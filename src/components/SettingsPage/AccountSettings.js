@@ -26,22 +26,32 @@ const AccountSettings = () => {
         setDeleting(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${ApiConstants.baseUrl}${ApiConstants.deleteUser}`, {
+            const formData = new FormData();
+            formData.append('status', '0');
+
+            const response = await fetch(`${ApiConstants.baseUrl}${ApiConstants.deleteUser}?status=0`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'Authorization': token ? `Bearer ${token}` : ''
                 },
-                body: JSON.stringify({
-                    status: 0
-                })
+                body: formData
             });
 
             const result = await response.json().catch(() => null);
             console.log('=== [Delete User Response] ===', response.status, result);
 
-            if (response.ok || response.status === 200) {
+            const isSuccess = response.ok && (
+                result?.status === true ||
+                result?.status === 200 ||
+                result?.status === '200' ||
+                result?.success === true ||
+                result?.status === 1 ||
+                result?.status === '1' ||
+                (result?.message && !result.message.toLowerCase().includes('required') && !result.message.toLowerCase().includes('error') && !result.message.toLowerCase().includes('fail'))
+            );
+
+            if (isSuccess) {
                 alert(result?.message || result?.messages?.success || "Your account has been deleted successfully.");
                 handleLogout();
             } else {
