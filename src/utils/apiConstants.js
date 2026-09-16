@@ -9,4 +9,5 @@ export const ApiConstants = {
     loginWithPassword: '/auth/login_withpwd',
     forgotPassword: '/api/forgot-password',
     resetPassword: '/api/reset-password',
+    deleteUser: '/user/deleteuser',
 };

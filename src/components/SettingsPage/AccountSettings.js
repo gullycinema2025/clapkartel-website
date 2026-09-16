@@ -26,10 +26,11 @@ const AccountSettings = () => {
         setDeleting(true);
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`${ApiConstants.baseUrl}/deleteuser`, {
+            const response = await fetch(`${ApiConstants.baseUrl}${ApiConstants.deleteUser}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Accept': 'application/json',
                     'Authorization': token ? `Bearer ${token}` : ''
                 },
                 body: JSON.stringify({
@@ -37,10 +38,15 @@ const AccountSettings = () => {
                 })
             });
 
-            if (response.ok) {
+            const result = await response.json().catch(() => null);
+            console.log('=== [Delete User Response] ===', response.status, result);
+
+            if (response.ok || response.status === 200) {
+                alert(result?.message || result?.messages?.success || "Your account has been deleted successfully.");
                 handleLogout();
             } else {
-                alert("Failed to delete account. Please try again.");
+                const errMsg = result?.message || result?.messages?.error || result?.error || "Failed to delete account. Please try again.";
+                alert(errMsg);
             }
         } catch (error) {
             console.error("Delete account error:", error);
