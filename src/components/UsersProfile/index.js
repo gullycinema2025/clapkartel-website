@@ -120,16 +120,16 @@ const UsersProfile = () => {
                             subcatId: subcatId,
                             isRead: false
                         });
-                        console.log("📌 Profile follow notification sent in real-time to receiver!");
+                        /* console.log("📌 Profile follow notification sent in real-time to receiver!"); */
                     } catch (notifErr) {
-                        console.error("Failed to write profile follow notification to Firestore:", notifErr);
+                        /* console.error("Failed to write profile follow notification to Firestore:", notifErr); */
                     }
                 }
             } else {
                 displayMessage('error', isFollowing ? 'Failed to unfollow' : 'Failed to follow');
             }
         } catch (err) {
-            console.error('Error toggling follow:', err);
+            /* console.error('Error toggling follow:', err); */
             displayMessage('error', 'Action failed. Please try again.');
         }
     };
@@ -162,7 +162,7 @@ const UsersProfile = () => {
                     }));
                 }
             } catch (err) {
-                console.error(`Error fetching details for ${eProId}:`, err);
+                /* console.error(`Error fetching details for ${eProId}:`, err); */
             } finally {
                 setSubCatLoading(prev => ({ ...prev, [eProId]: false }));
             }
@@ -196,7 +196,7 @@ const UsersProfile = () => {
                 );
 
                 const result = await response.json();
-                console.log('User Details:', result);
+                /* console.log('User Details:', result); */
 
                 if (result.userDetailsExtraSubcategory && result.userDetailsExtraSubcategory.length > 0) {
                     setUserData(result);
@@ -210,7 +210,7 @@ const UsersProfile = () => {
                     setError('User details not found');
                 }
             } catch (err) {
-                console.error('Error fetching user details:', err);
+                /* console.error('Error fetching user details:', err); */
                 setError('Failed to load user details');
             } finally {
                 setLoading(false);
@@ -251,7 +251,7 @@ const UsersProfile = () => {
                 setCityName(foundCity.name);
             }
         } catch (err) {
-            console.error('Error fetching city name:', err);
+            /* console.error('Error fetching city name:', err); */
         }
     };
 
@@ -275,13 +275,13 @@ const UsersProfile = () => {
                 );
 
                 const result = await response.json();
-                console.log('Gallery Images:', result);
+                /* console.log('Gallery Images:', result); */
 
                 if (result.status && result.data) {
                     setGalleryImages(result.data);
                 }
             } catch (err) {
-                console.error('Error fetching gallery images:', err);
+                /* console.error('Error fetching gallery images:', err); */
             } finally {
                 setGalleryLoading(false);
             }
@@ -310,13 +310,13 @@ const UsersProfile = () => {
                 );
 
                 const result = await response.json();
-                console.log('Videos:', result);
+                /* console.log('Videos:', result); */
 
                 if (result.status && result.data) {
                     setVideos(result.data);
                 }
             } catch (err) {
-                console.error('Error fetching videos:', err);
+                /* console.error('Error fetching videos:', err); */
             } finally {
                 setVideosLoading(false);
             }

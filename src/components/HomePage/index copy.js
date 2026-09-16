@@ -113,7 +113,7 @@ const HomePage = () => {
       setSubCategoryError(null);
       setSubCategories([]);
 
-      console.log('Fetching subcategories for category:', catId);
+      /* console.log('Fetching subcategories for category:', catId); */
 
       const displayType = String(catId) === '22' ? 'rentals' : 'directory';
       const response = await fetch(`${BASE_URL}/api/allSubCategoryList/${catId}?only_display=${displayType}`, {
@@ -126,7 +126,7 @@ const HomePage = () => {
       }
 
       const result = await response.json();
-      console.log('Subcategory API Response:', result);
+      /* console.log('Subcategory API Response:', result); */
 
       if (result?.subcategorylist && Array.isArray(result.subcategorylist) && result.subcategorylist.length > 0) {
         setSubCategories(result.subcategorylist);
@@ -135,12 +135,12 @@ const HomePage = () => {
       } else if (Array.isArray(result) && result.length > 0) {
         setSubCategories(result);
       } else {
-        console.log('No subcategories found for category:', catId);
+        /* console.log('No subcategories found for category:', catId); */
         setSubCategories([]);
       }
 
     } catch (err) {
-      console.error('Error fetching subcategories:', err);
+      /* console.error('Error fetching subcategories:', err); */
       setSubCategoryError(err.message);
       setSubCategories([]);
     } finally {
@@ -156,21 +156,21 @@ const HomePage = () => {
       setOtherCategories([]);
       setHasAttemptedFetch(false);
 
-      console.log('Fetching other categories for section:', sectionId);
+      /* console.log('Fetching other categories for section:', sectionId); */
 
       const response = await fetch(`${BASE_URL}/api/get-other-categories/${sectionId}`, {
         method: 'GET',
         headers: getAuthHeaders()
       });
 
-      console.log('Response status:', response.status);
+      /* console.log('Response status:', response.status); */
 
       if (!response.ok) {
         throw new Error(`Failed to fetch other categories: ${response.status}`);
       }
 
       const result = await response.json();
-      console.log('Other Categories API Full Response:', JSON.stringify(result, null, 2));
+      /* console.log('Other Categories API Full Response:', JSON.stringify(result, null, 2)); */
 
       let foundCategories = [];
 
@@ -185,14 +185,14 @@ const HomePage = () => {
         foundCategories = result;
       }
 
-      console.log('Found categories:', foundCategories);
-      console.log('Categories length:', foundCategories.length);
+      /* console.log('Found categories:', foundCategories); */
+      /* console.log('Categories length:', foundCategories.length); */
 
       setOtherCategories(foundCategories);
       setHasAttemptedFetch(true);
 
     } catch (err) {
-      console.error('Error fetching other categories:', err);
+      /* console.error('Error fetching other categories:', err); */
       setOtherCategoryError(err.message);
       setOtherCategories([]);
       setHasAttemptedFetch(true);
@@ -225,7 +225,7 @@ const HomePage = () => {
 
   // Handle other section item click
   const handleOtherSectionClick = (section) => {
-    console.log('Opening modal for section:', section);
+    /* console.log('Opening modal for section:', section); */
     setSelectedOtherSection(section);
     setOtherCategories([]);
     setHasAttemptedFetch(false);
@@ -263,7 +263,7 @@ const HomePage = () => {
         }
 
         const podcastResult = await podcastResponse.json();
-        console.log('Podcast API Response:', podcastResult);
+        /* console.log('Podcast API Response:', podcastResult); */
 
         if (podcastResult?.result && podcastResult.result.length > 0) {
           setPodcastData(podcastResult.result[0]);
@@ -280,7 +280,7 @@ const HomePage = () => {
         }
 
         const bannerResult = await bannerResponse.json();
-        console.log('Banner API Response:', bannerResult);
+        /* console.log('Banner API Response:', bannerResult); */
 
         if (bannerResult?.banners && bannerResult.banners.length > 0) {
           setBannerData(bannerResult.banners.slice(0, 3));
@@ -297,11 +297,11 @@ const HomePage = () => {
         }
 
         const categoryResult = await categoryResponse.json();
-        console.log('Category List API Response:', categoryResult);
+        /* console.log('Category List API Response:', categoryResult); */
 
         if (categoryResult?.categoryList && categoryResult.categoryList.length > 0) {
           setCraftCategories(categoryResult.categoryList);
-          console.log('Craft Categories:', categoryResult.categoryList);
+          /* console.log('Craft Categories:', categoryResult.categoryList); */
         }
 
         // Fetch other sections/formats
@@ -315,7 +315,7 @@ const HomePage = () => {
         }
 
         const otherSectionsResult = await otherSectionsResponse.json();
-        console.log('Other Sections API Response:', otherSectionsResult);
+        /* console.log('Other Sections API Response:', otherSectionsResult); */
 
         if (otherSectionsResult?.subcategories) {
           const flattenedSections = [];
@@ -323,12 +323,12 @@ const HomePage = () => {
             const items = otherSectionsResult.subcategories[formatKey];
             flattenedSections.push(...items);
           });
-          console.log('Flattened Other Sections:', flattenedSections);
+          /* console.log('Flattened Other Sections:', flattenedSections); */
           setOtherSections(flattenedSections);
         }
 
       } catch (err) {
-        console.error('Error fetching homepage data:', err);
+        /* console.error('Error fetching homepage data:', err); */
         setError(err.message);
       } finally {
         setLoading(false);
@@ -350,13 +350,13 @@ const HomePage = () => {
 
   // Render modal body content for Other Sections
   const renderOtherModalContent = () => {
-    console.log('Rendering Other Modal Content:', {
+    /* console.log('Rendering Other Modal Content:', {
       loading: loadingOtherCategories,
       error: otherCategoryError,
       hasAttemptedFetch,
       categoriesCount: otherCategories?.length,
       categories: otherCategories
-    });
+    }); */
 
     // Show loading state
     if (loadingOtherCategories) {
@@ -441,7 +441,7 @@ const HomePage = () => {
                 alt={category.cat_name}
                 className="other-category-icon"
                 onError={(e) => {
-                  console.error('Failed to load category image:', category.cat_image);
+                  /* console.error('Failed to load category image:', category.cat_image); */
                 }}
               />
             </div>
@@ -626,7 +626,7 @@ const HomePage = () => {
                   alt={category.cat_name}
                   className="craft-image"
                   onError={(e) => {
-                    console.error('Failed to load craft image:', craftImgSrc);
+                    /* console.error('Failed to load craft image:', craftImgSrc); */
                   }}
                 />
                 <h1 className="craft-name">{toTitleCase(category.cat_name)}</h1>
@@ -657,7 +657,7 @@ const HomePage = () => {
                   alt={section.sub_cat_name}
                   className="craft-image"
                   onError={(e) => {
-                    console.error('Failed to load other section image:', sectionImgSrc);
+                    /* console.error('Failed to load other section image:', sectionImgSrc); */
                   }}
                 />
                 <h1 className="craft-name">{toTitleCase(section.sub_cat_name)}</h1>

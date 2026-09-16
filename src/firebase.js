@@ -42,7 +42,7 @@ if (isDevEnvironment) {
     // console.log('📱 Use test phone +918106458788 with OTP 123456 from Firebase Console');
 } else {
     auth.settings.appVerificationDisabledForTesting = false;
-    console.log('🔧 Firebase Test Mode: DISABLED - Using real reCAPTCHA');
+    /* console.log('🔧 Firebase Test Mode: DISABLED - Using real reCAPTCHA'); */
 }
 
 // Initialize Firestore with experimentalForceLongPolling to prevent CORS stream blocks

@@ -54,8 +54,8 @@ const LoginPassword = () => {
       password: formData.password
     };
 
-    console.log('API Call: Post', loginUrl);
-    console.log('Request Body:', JSON.stringify(requestBody, null, 2));
+    /* console.log('API Call: Post', loginUrl); */
+    /* console.log('Request Body:', JSON.stringify(requestBody, null, 2)); */
 
     try {
       const response = await fetch(loginUrl, {
@@ -67,7 +67,7 @@ const LoginPassword = () => {
       });
 
       const data = await response.json();
-      console.log('API Response:', JSON.stringify(data, null, 2));
+      /* console.log('API Response:', JSON.stringify(data, null, 2)); */
 
       if (response.ok || data.message === "Login successful") {
         showToast('Login successful', 'success');
@@ -117,7 +117,7 @@ const LoginPassword = () => {
         setErrors(prev => ({ ...prev, ...fieldError, api: userFriendlyError }));
       }
     } catch (error) {
-      console.error('Login Error:', error);
+      /* console.error('Login Error:', error); */
       showToast('An error occurred during login. Please try again.', 'error');
       setErrors({ api: 'An unexpected error occurred. Please try again.' });
     } finally {

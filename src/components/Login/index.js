@@ -95,13 +95,13 @@ const Login = () => {
             try {
                 const verifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
                     size: 'invisible',
-                    callback: () => { console.log('✅ reCAPTCHA solved'); },
+                    callback: () => { /* console.log('✅ reCAPTCHA solved'); */ },
                     'expired-callback': () => {
-                        console.warn('⚠️ reCAPTCHA expired');
+                        /* console.warn('⚠️ reCAPTCHA expired'); */
                         cleanupRecaptcha();
                     },
                     'error-callback': () => {
-                        console.error('❌ reCAPTCHA error');
+                        /* console.error('❌ reCAPTCHA error'); */
                         cleanupRecaptcha();
                     },
                 });
@@ -127,12 +127,12 @@ const Login = () => {
                 10000,
                 'Backend check timed out'
             );
-            console.log('Backend status:', response.status);
+            /* console.log('Backend status:', response.status); */
             if (response.status === 400) return true; // user exists → proceed
             showToast('📵 This mobile number is not registered. Please sign up to create an account.', 'error');
             return false;
         } catch (err) {
-            console.error('Backend check error:', err);
+            /* console.error('Backend check error:', err); */
             if (err.message === 'Backend check timed out') {
                 showToast('⏱️ Server is taking too long to respond. Please check your connection and try again.', 'error');
             } else if (err instanceof TypeError && err.message === 'Failed to fetch') {
@@ -192,7 +192,7 @@ const Login = () => {
                     'reCAPTCHA render timed out'
                 );
             } catch (rcErr) {
-                console.error('reCAPTCHA setup/render failed:', rcErr);
+                /* console.error('reCAPTCHA setup/render failed:', rcErr); */
                 showToast(
                     rcErr.message === 'reCAPTCHA render timed out'
                         ? '⏱️ Security check is taking too long. Please refresh the page and try again.'
@@ -212,7 +212,7 @@ const Login = () => {
                     'OTP request timed out'
                 );
             } catch (fbErr) {
-                console.error('Firebase OTP error:', fbErr);
+                /* console.error('Firebase OTP error:', fbErr); */
                 const msg =
                     fbErr.message === 'OTP request timed out'
                         ? '⏱️ OTP request timed out. Please try again.'
@@ -244,7 +244,7 @@ const Login = () => {
             navigate('/verify-otp');
 
         } catch (unexpected) {
-            console.error('Unexpected login error:', unexpected);
+            /* console.error('Unexpected login error:', unexpected); */
             showToast('❌ Something went wrong. Please try again or refresh the page.', 'error');
             resetAfterError(true);
         }

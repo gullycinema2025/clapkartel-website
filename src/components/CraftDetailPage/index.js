@@ -140,7 +140,7 @@ const CraftDetailPage = () => {
                         }
                     }
                 } catch (videoErr) {
-                    console.warn('[Podcast] non-fatal:', videoErr.message);
+                    /* console.warn('[Podcast] non-fatal:', videoErr.message); */
                 }
 
                 // Fetch banners
@@ -157,7 +157,7 @@ const CraftDetailPage = () => {
                     }
                 }
             } catch (err) {
-                console.error('Error fetching data:', err);
+                /* console.error('Error fetching data:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

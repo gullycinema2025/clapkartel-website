@@ -89,14 +89,14 @@ const ForgotPassword = () => {
     formData.append('email', email.trim());
 
     try {
-      console.log('=== [Forgot Password] Calling:', forgotUrl, 'with email:', email.trim());
+      /* console.log('=== [Forgot Password] Calling:', forgotUrl, 'with email:', email.trim()); */
       const response = await fetch(forgotUrl, {
         method: 'POST',
         body: formData
       });
 
       const data = await response.json();
-      console.log('=== [Forgot Password] Response:', data);
+      /* console.log('=== [Forgot Password] Response:', data); */
 
       if (
         response.ok &&
@@ -116,7 +116,7 @@ const ForgotPassword = () => {
         setErrors({ email: errorMsg });
       }
     } catch (error) {
-      console.error('=== [Forgot Password] Error:', error);
+      /* console.error('=== [Forgot Password] Error:', error); */
       showToast('Network error while requesting OTP. Please try again.', 'error');
       setErrors({ api: 'Network error. Please try again later.' });
     } finally {
@@ -139,14 +139,14 @@ const ForgotPassword = () => {
     formData.append('password', password);
 
     try {
-      console.log('=== [Reset Password] Calling:', resetUrl, 'with email:', email.trim(), 'otp:', otp.trim());
+      /* console.log('=== [Reset Password] Calling:', resetUrl, 'with email:', email.trim(), 'otp:', otp.trim()); */
       const response = await fetch(resetUrl, {
         method: 'POST',
         body: formData
       });
 
       const data = await response.json();
-      console.log('=== [Reset Password] Response:', data);
+      /* console.log('=== [Reset Password] Response:', data); */
 
       if (
         response.ok &&
@@ -166,7 +166,7 @@ const ForgotPassword = () => {
         setErrors({ api: errorMsg });
       }
     } catch (error) {
-      console.error('=== [Reset Password] Error:', error);
+      /* console.error('=== [Reset Password] Error:', error); */
       showToast('Network error while resetting password. Please try again.', 'error');
       setErrors({ api: 'Network error. Please try again later.' });
     } finally {

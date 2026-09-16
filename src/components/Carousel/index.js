@@ -46,7 +46,7 @@ const Carousel = () => {
         // Check if token exists before attempting fetch
         const token = localStorage.getItem('token');
         if (!token) {
-          console.log('No token found, skipping banner fetch');
+          /* console.log('No token found, skipping banner fetch'); */
           setLoading(false);
           return;
         }
@@ -63,13 +63,13 @@ const Carousel = () => {
 
         if (!response.ok) {
           // Silently fail and use fallback images
-          console.log('Using fallback banner images');
+          /* console.log('Using fallback banner images'); */
           setLoading(false);
           return;
         }
 
         const result = await response.json();
-        console.log('=== [Carousel Banner API (dash/getbanners/1)] ===', result);
+        /* console.log('=== [Carousel Banner API (dash/getbanners/1)] ===', result); */
 
         // Extract banners array from response
         if (result?.banners && result.banners.length > 0) {
@@ -77,7 +77,7 @@ const Carousel = () => {
         }
       } catch (err) {
         // Silently fail - use fallback images
-        console.log('Using fallback banner images');
+        /* console.log('Using fallback banner images'); */
       } finally {
         setLoading(false);
       }

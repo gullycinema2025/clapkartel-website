@@ -207,7 +207,7 @@ const MessagesPage = () => {
                     setIsBlocked(false);
                 }
             } catch (error) {
-                console.error("Error checking block status:", error);
+                /* console.error("Error checking block status:", error); */
                 setIsBlocked(false);
             }
         };
@@ -234,7 +234,7 @@ const MessagesPage = () => {
             const recentRef = doc(db, 'recent_chats', currentUserId, 'users', activeChat.userId);
             await setDoc(recentRef, { unreadCount: 0 }, { merge: true });
         } catch (error) {
-            console.error("Error marking seen:", error);
+            /* console.error("Error marking seen:", error); */
         }
     };
 
@@ -352,7 +352,7 @@ const MessagesPage = () => {
             });
 
         } catch (error) {
-            console.error("Error sending message:", error);
+            /* console.error("Error sending message:", error); */
         }
     };
 
@@ -383,7 +383,7 @@ const MessagesPage = () => {
                 showToast('Failed to block user', 'error');
             }
         } catch (error) {
-            console.error("Error blocking user:", error);
+            /* console.error("Error blocking user:", error); */
             showToast('An error occurred. Please try again.', 'error');
         } finally {
             setIsSubmitting(false);
@@ -417,7 +417,7 @@ const MessagesPage = () => {
                 showToast('Failed to unblock user', 'error');
             }
         } catch (error) {
-            console.error("Error unblocking user:", error);
+            /* console.error("Error unblocking user:", error); */
             showToast('An error occurred. Please try again.', 'error');
         } finally {
             setIsSubmitting(false);
@@ -466,7 +466,7 @@ const MessagesPage = () => {
                 showToast('Failed to report user', 'error');
             }
         } catch (error) {
-            console.error("Error reporting user:", error);
+            /* console.error("Error reporting user:", error); */
             showToast('An error occurred. Please try again.', 'error');
         } finally {
             setIsSubmitting(false);

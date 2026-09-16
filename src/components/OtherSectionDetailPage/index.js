@@ -151,7 +151,7 @@ const OtherSectionDetailPage = () => {
                             if (valid.length > 0) foundVideos = valid;
                         }
                     } catch (e1) {
-                        console.warn('[Podcast] error with main cat_id:', e1);
+                        /* console.warn('[Podcast] error with main cat_id:', e1); */
                     }
 
                     // 2. If not found, try alternative cat_id (22 vs 23)
@@ -169,7 +169,7 @@ const OtherSectionDetailPage = () => {
                                 if (valid.length > 0) foundVideos = valid;
                             }
                         } catch (e2) {
-                            console.warn('[Podcast] error with alt cat_id:', e2);
+                            /* console.warn('[Podcast] error with alt cat_id:', e2); */
                         }
                     }
 
@@ -195,7 +195,7 @@ const OtherSectionDetailPage = () => {
                                 }
                             }
                         } catch (e3) {
-                            console.warn('[Podcast] error with /getpodcast:', e3);
+                            /* console.warn('[Podcast] error with /getpodcast:', e3); */
                         }
                     }
 
@@ -207,7 +207,7 @@ const OtherSectionDetailPage = () => {
                         setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                     }
                 } catch (ve) {
-                    console.warn('[Podcast] non-fatal:', ve.message);
+                    /* console.warn('[Podcast] non-fatal:', ve.message); */
                     setVideos(DEFAULT_FALLBACK_VIDEOS);
                     setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                 }
@@ -227,7 +227,7 @@ const OtherSectionDetailPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error fetching data:', err);
+                /* console.error('Error fetching data:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

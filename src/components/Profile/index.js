@@ -213,7 +213,7 @@ const Profile = () => {
         }
       }
     } catch (err) {
-      console.error('Error fetching categories:', err);
+      /* console.error('Error fetching categories:', err); */
       displayMessage('error', err.message || 'Failed to load categories');
     } finally {
       setLoadingCategories(false);
@@ -266,7 +266,7 @@ const Profile = () => {
         setSubcategories([]);
       }
     } catch (err) {
-      console.error('Error fetching subcategories:', err);
+      /* console.error('Error fetching subcategories:', err); */
       displayMessage('error', err.message || 'Failed to load subcategories');
     } finally {
       setLoadingSubcategories(false);
@@ -298,20 +298,20 @@ const Profile = () => {
 
         const result = await response.json();
 
-        console.log('=== PROFILE DATA API RESPONSE ===');
-        console.log('Full API Response:', result);
-        console.log('User Data:', result.data);
-        console.log('================================');
+        /* console.log('=== PROFILE DATA API RESPONSE ==='); */
+        /* console.log('Full API Response:', result); */
+        /* console.log('User Data:', result.data); */
+        /* console.log('================================'); */
 
         if (result?.status === 'success' && result?.data && result.data.length > 0) {
           setUserData(result.data[0]);
-          console.log('User Profile Set:', result.data[0]);
+          /* console.log('User Profile Set:', result.data[0]); */
         } else {
           throw new Error('No user data found');
         }
 
       } catch (err) {
-        console.error('Error fetching user data:', err);
+        /* console.error('Error fetching user data:', err); */
         setError(err.message);
       } finally {
         setLoading(false);
@@ -346,7 +346,7 @@ const Profile = () => {
         }
 
       } catch (err) {
-        console.error('Error fetching skills:', err);
+        /* console.error('Error fetching skills:', err); */
       } finally {
         setSkillsLoading(false);
       }
@@ -421,7 +421,7 @@ const Profile = () => {
           }
         }
       } catch (error) {
-        console.error('Error fetching location names:', error);
+        /* console.error('Error fetching location names:', error); */
       }
     };
 
@@ -472,7 +472,7 @@ const Profile = () => {
         headers: getAuthHeaders()
 
       });
-      console.log("skill", skill.e_pro_id)
+      /* console.log("skill", skill.e_pro_id) */
 
       if (!response.ok) {
         let errorMsg = `Failed to view skill: ${response.status}`;
@@ -491,7 +491,7 @@ const Profile = () => {
       setSkillDetails(result.data);
       setLoadingSkillDetails(false);
     } catch (err) {
-      console.error('Error viewing skill:', err);
+      /* console.error('Error viewing skill:', err); */
       setSkillDetailsError(err.message || 'Failed to load skill details');
       setLoadingSkillDetails(false);
     }
@@ -555,7 +555,7 @@ const Profile = () => {
       setIsEditModalOpen(true);
       setLoadingSkillDetails(false);
     } catch (err) {
-      console.error('Error loading skill for edit:', err);
+      /* console.error('Error loading skill for edit:', err); */
       displayMessage('error', err.message || 'Failed to load skill details for editing');
       setLoadingSkillDetails(false);
     }
@@ -662,7 +662,7 @@ const Profile = () => {
       displayMessage('success', 'Skill updated successfully!');
       handleCloseEditModal();
     } catch (err) {
-      console.error('Error updating skill:', err);
+      /* console.error('Error updating skill:', err); */
       displayMessage('error', err.message || 'Failed to update skill. Please try again.');
     } finally {
       setIsSubmitting(false);
@@ -724,7 +724,7 @@ const Profile = () => {
       displayMessage('success', `Successfully deleted: ${skillToDelete.sub_cat_name}`);
       handleCloseDeleteModal();
     } catch (err) {
-      console.error('Error deleting skill:', err);
+      /* console.error('Error deleting skill:', err); */
       displayMessage('error', err.message || 'Failed to delete skill. Please try again.');
     } finally {
       setIsDeleting(false);
@@ -888,7 +888,7 @@ const Profile = () => {
       displayMessage('success', 'Skill added successfully!');
       handleCloseAddSkillModal();
     } catch (err) {
-      console.error('Error adding skill:', err);
+      /* console.error('Error adding skill:', err); */
       displayMessage('error', err.message || 'Failed to add skill. Please try again.');
     } finally {
       setIsAddingSkill(false);

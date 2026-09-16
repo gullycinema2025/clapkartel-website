@@ -402,7 +402,7 @@ const HomePage = () => {
             }
           }
         } catch (podcastErr) {
-          console.warn('[HomePage] Podcast fetch non-fatal:', podcastErr.message);
+          /* console.warn('[HomePage] Podcast fetch non-fatal:', podcastErr.message); */
         }
 
         // Fetch banners (Home menu_id=1)
@@ -413,13 +413,13 @@ const HomePage = () => {
           });
           if (bannerResponse.ok) {
             const bannerResult = await bannerResponse.json();
-            console.log('=== [Banner API: menu_id=1 (Home)] ===', bannerResult);
+            /* console.log('=== [Banner API: menu_id=1 (Home)] ===', bannerResult); */
             if (bannerResult?.banners && bannerResult.banners.length > 0) {
               setBannerData(bannerResult.banners);
             }
           }
         } catch (bErr) {
-          console.warn('[HomePage] Home banner fetch error:', bErr);
+          /* console.warn('[HomePage] Home banner fetch error:', bErr); */
         }
 
         // Fetch banners (Category menu_id=2)
@@ -430,12 +430,12 @@ const HomePage = () => {
           });
           if (categoryBannerResponse.ok) {
             const categoryBannerResult = await categoryBannerResponse.json();
-            console.log('=== [Banner API: menu_id=2 (Category)] ===', categoryBannerResult);
+            /* console.log('=== [Banner API: menu_id=2 (Category)] ===', categoryBannerResult); */
           } else {
-            console.log('=== [Banner API: menu_id=2 (Category)] Status:', categoryBannerResponse.status);
+            /* console.log('=== [Banner API: menu_id=2 (Category)] Status:', categoryBannerResponse.status); */
           }
         } catch (catBannerErr) {
-          console.warn('[HomePage] Category banner fetch error:', catBannerErr);
+          /* console.warn('[HomePage] Category banner fetch error:', catBannerErr); */
         }
 
         // Fetch category list for crafts section
@@ -484,7 +484,7 @@ const HomePage = () => {
         }
 
       } catch (err) {
-        console.error('Error fetching homepage data:', err);
+        /* console.error('Error fetching homepage data:', err); */
         setError(err.message);
       } finally {
         setLoading(false);

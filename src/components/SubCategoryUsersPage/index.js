@@ -99,7 +99,7 @@ const SubCategoryUsersPage = () => {
                 const data = result?.data && Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
                 setCountries(data);
             } catch (err) {
-                console.error('Error fetching countries:', err);
+                /* console.error('Error fetching countries:', err); */
             } finally {
                 setLoadingCountries(false);
             }
@@ -118,7 +118,7 @@ const SubCategoryUsersPage = () => {
                 const result = await response.json();
                 const data = result?.data && Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
                 setStates(data);
-            } catch (err) { console.error('Error fetching states:', err); setStates([]); }
+            } catch (err) { /* console.error('Error fetching states:', err); */ setStates([]); }
             finally { setLoadingStates(false); }
         };
         fetchStates();
@@ -135,7 +135,7 @@ const SubCategoryUsersPage = () => {
                 const result = await response.json();
                 const data = result?.data && Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
                 setCities(data);
-            } catch (err) { console.error('Error fetching cities:', err); setCities([]); }
+            } catch (err) { /* console.error('Error fetching cities:', err); */ setCities([]); }
             finally { setLoadingCities(false); }
         };
         fetchCities();
@@ -187,7 +187,7 @@ const SubCategoryUsersPage = () => {
                         if (fb.ok) { const fbr = await fb.json(); const fbd = fbr?.result || fbr?.data || []; if (fbd.length > 0) { setVideos(fbd); setSelectedVideo(fbd[0]); } }
                     }
                 } catch (videoErr) {
-                    console.warn('[Podcast] non-fatal:', videoErr.message);
+                    /* console.warn('[Podcast] non-fatal:', videoErr.message); */
                 }
 
                 // Fetch banners
@@ -196,7 +196,7 @@ const SubCategoryUsersPage = () => {
                     const bannerResult = await bannerResponse.json();
                     setBannerData(bannerResult?.banners && Array.isArray(bannerResult.banners) ? bannerResult.banners : Array.isArray(bannerResult) ? bannerResult : []);
                 }
-            } catch (err) { console.error('Error:', err); setError(err.message); }
+            } catch (err) { /* console.error('Error:', err); */ setError(err.message); }
             finally { setLoading(false); }
         };
         fetchAll();

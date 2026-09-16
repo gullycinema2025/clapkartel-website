@@ -75,7 +75,7 @@ const Gallery = () => {
                     }
                 }
             } catch (err) {
-                console.error('Error fetching user ID:', err);
+                /* console.error('Error fetching user ID:', err); */
             }
         };
 
@@ -101,7 +101,7 @@ const Gallery = () => {
                 }
 
                 const result = await response.json();
-                console.log('Gallery Images Response:', result);
+                /* console.log('Gallery Images Response:', result); */
 
                 // Parse the actual API response structure
                 if (result?.status && result?.data && Array.isArray(result.data)) {
@@ -114,7 +114,7 @@ const Gallery = () => {
                     setImages([]);
                 }
             } catch (err) {
-                console.error('Error fetching gallery:', err);
+                /* console.error('Error fetching gallery:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -227,7 +227,7 @@ const Gallery = () => {
             }
 
             const result = await response.json();
-            console.log('Upload Response:', result);
+            /* console.log('Upload Response:', result); */
 
             // Show success modal instead of alert
             setSuccessMessage('Images uploaded successfully!');
@@ -259,7 +259,7 @@ const Gallery = () => {
                 }
             }
         } catch (err) {
-            console.error('Error uploading images:', err);
+            /* console.error('Error uploading images:', err); */
             displayMessage('error', `Failed to upload images: ${err.message}`);
         } finally {
             setUploading(false);
@@ -295,7 +295,7 @@ const Gallery = () => {
             setShowDeleteModal(false);
             setImageToDelete(null);
         } catch (err) {
-            console.error('Error deleting image:', err);
+            /* console.error('Error deleting image:', err); */
             displayMessage('error', `Failed to delete image: ${err.message}`);
         } finally {
             setDeleting(false);

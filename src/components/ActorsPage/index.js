@@ -132,11 +132,11 @@ const ActorsPage = () => {
                 } else if (Array.isArray(result)) {
                     setCountries(result);
                 } else {
-                    console.error('Unexpected countries response format:', result);
+                    /* console.error('Unexpected countries response format:', result); */
                     setCountries([]);
                 }
             } catch (err) {
-                console.error('Error fetching countries:', err);
+                /* console.error('Error fetching countries:', err); */
             } finally {
                 setLoadingCountries(false);
             }
@@ -179,11 +179,11 @@ const ActorsPage = () => {
                 } else if (Array.isArray(result)) {
                     setStates(result);
                 } else {
-                    console.error('Unexpected states response format:', result);
+                    /* console.error('Unexpected states response format:', result); */
                     setStates([]);
                 }
             } catch (err) {
-                console.error('Error fetching states:', err);
+                /* console.error('Error fetching states:', err); */
                 setStates([]);
             } finally {
                 setLoadingStates(false);
@@ -225,11 +225,11 @@ const ActorsPage = () => {
                 } else if (Array.isArray(result)) {
                     setCities(result);
                 } else {
-                    console.error('Unexpected cities response format:', result);
+                    /* console.error('Unexpected cities response format:', result); */
                     setCities([]);
                 }
             } catch (err) {
-                console.error('Error fetching cities:', err);
+                /* console.error('Error fetching cities:', err); */
                 setCities([]);
             } finally {
                 setLoadingCities(false);
@@ -328,7 +328,7 @@ const ActorsPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error fetching data:', err);
+                /* console.error('Error fetching data:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

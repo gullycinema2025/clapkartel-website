@@ -38,7 +38,7 @@ const NotificationsPage = () => {
             setNotifications(notifs);
             setLoading(false);
         }, (error) => {
-            console.error("Error fetching notifications:", error);
+            /* console.error("Error fetching notifications:", error); */
             setLoading(false);
         });
 
@@ -64,7 +64,7 @@ const NotificationsPage = () => {
                 showToast("All notifications are already read", "info");
             }
         } catch (error) {
-            console.error("Error marking notifications as read:", error);
+            /* console.error("Error marking notifications as read:", error); */
             showToast("Failed to mark notifications as read", "error");
         }
     };
@@ -76,7 +76,7 @@ const NotificationsPage = () => {
             const docRef = doc(db, 'notifications', currentUserId, 'user_notifications', notificationId);
             await updateDoc(docRef, { isRead: true });
         } catch (error) {
-            console.error("Error marking notification as read:", error);
+            /* console.error("Error marking notification as read:", error); */
         }
     };
 

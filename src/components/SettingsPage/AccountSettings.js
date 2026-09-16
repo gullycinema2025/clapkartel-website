@@ -49,7 +49,7 @@ const AccountSettings = () => {
                 body: formData
             });
 
-            console.log('Delete User Status Code:', response.status);
+            /* console.log('Delete User Status Code:', response.status); */
             setShowDeleteModal(false);
 
             if (response.status === 200 || response.ok) {
@@ -71,7 +71,7 @@ const AccountSettings = () => {
                 });
             }
         } catch (error) {
-            console.error("Delete User Error:", error);
+            /* console.error("Delete User Error:", error); */
             setShowDeleteModal(false);
             setStatusModal({
                 show: true,

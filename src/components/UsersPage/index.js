@@ -204,7 +204,7 @@ const UsersPage = () => {
                     }
                 }
             } catch (err) {
-                console.error('Error fetching user data in UsersPage:', err);
+                /* console.error('Error fetching user data in UsersPage:', err); */
             }
         };
 
@@ -223,7 +223,7 @@ const UsersPage = () => {
                 const data = result?.data && Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
                 setCountries(data);
             } catch (err) {
-                console.error('Error fetching countries:', err);
+                /* console.error('Error fetching countries:', err); */
             } finally {
                 setLoadingCountries(false);
             }
@@ -242,7 +242,7 @@ const UsersPage = () => {
                 const result = await response.json();
                 const data = result?.data && Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
                 setStates(data);
-            } catch (err) { console.error('Error fetching states:', err); setStates([]); }
+            } catch (err) { /* console.error('Error fetching states:', err); */ setStates([]); }
             finally { setLoadingStates(false); }
         };
         fetchStates();
@@ -259,7 +259,7 @@ const UsersPage = () => {
                 const result = await response.json();
                 const data = result?.data && Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
                 setCities(data);
-            } catch (err) { console.error('Error fetching cities:', err); setCities([]); }
+            } catch (err) { /* console.error('Error fetching cities:', err); */ setCities([]); }
             finally { setLoadingCities(false); }
         };
         fetchCities();
@@ -286,7 +286,7 @@ const UsersPage = () => {
                 const queryString = params.toString();
                 const apiUrl = `${BASE_URL}/api/getAllUsersList${queryString ? '?' + queryString : ''}`;
 
-                console.log('Fetching users from:', apiUrl);
+                /* console.log('Fetching users from:', apiUrl); */
 
                 const response = await fetch(apiUrl, { method: 'GET', headers: getAuthHeaders() });
                 const result = await response.json();
@@ -296,7 +296,7 @@ const UsersPage = () => {
                     setUsers([]);
                 }
             } catch (err) {
-                console.error('Error fetching users:', err);
+                /* console.error('Error fetching users:', err); */
                 setError('Failed to load users');
             } finally {
                 setLoading(false);
@@ -418,15 +418,15 @@ const UsersPage = () => {
                         subcatId: subcatId,
                         isRead: false
                     });
-                    console.log("📌 Follow notification sent in real-time to receiver!");
+                    /* console.log("📌 Follow notification sent in real-time to receiver!"); */
                 } catch (notifErr) {
-                    console.error("Failed to write follow notification to Firestore:", notifErr);
+                    /* console.error("Failed to write follow notification to Firestore:", notifErr); */
                 }
             } else {
                 displayMessage('error', 'Failed to follow user');
             }
         } catch (err) {
-            console.error('Error following user:', err);
+            /* console.error('Error following user:', err); */
             displayMessage('error', 'Failed to follow user. Please try again.');
         }
     };

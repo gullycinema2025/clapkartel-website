@@ -59,7 +59,7 @@ const OtherSectionContentPage = () => {
     // Console log selected/clicked item whenever it changes
     useEffect(() => {
         if (inlineVideo) {
-            console.log('=== [OtherSectionContent] CLICKED ITEM / CURRENT DETAILS DATA ===', inlineVideo);
+            /* console.log('=== [OtherSectionContent] CLICKED ITEM / CURRENT DETAILS DATA ===', inlineVideo); */
         }
     }, [inlineVideo]);
 
@@ -157,7 +157,7 @@ const OtherSectionContentPage = () => {
                 if (!response.ok) throw new Error(`Failed to fetch content: ${response.status}`);
                 const result = await response.json();
 
-                console.log('=== [OtherSectionContent] RAW API RESPONSE ===', result);
+                /* console.log('=== [OtherSectionContent] RAW API RESPONSE ===', result); */
 
                 let items = [];
                 if (result?.content && Array.isArray(result.content)) {
@@ -168,7 +168,7 @@ const OtherSectionContentPage = () => {
                     items = result;
                 }
 
-                console.log('=== [OtherSectionContent] EXTRACTED CONTENT ITEMS ===', items);
+                /* console.log('=== [OtherSectionContent] EXTRACTED CONTENT ITEMS ===', items); */
 
                 // Fallback: if empty try get-inner-list
                 if (items.length === 0 && !isInnerData) {
@@ -176,7 +176,7 @@ const OtherSectionContentPage = () => {
                     const fallbackResponse = await fetch(fallbackUrl, { method: 'GET', headers: getAuthHeaders() });
                     if (fallbackResponse.ok) {
                         const fallbackResult = await fallbackResponse.json();
-                        console.log('=== [OtherSectionContent] FALLBACK GET-INNER-LIST RESPONSE ===', fallbackResult);
+                        /* console.log('=== [OtherSectionContent] FALLBACK GET-INNER-LIST RESPONSE ===', fallbackResult); */
                         if (fallbackResult?.data && Array.isArray(fallbackResult.data)) {
                             items = fallbackResult.data.map(item => ({
                                 ...item,
@@ -211,7 +211,7 @@ const OtherSectionContentPage = () => {
                             if (valid.length > 0) foundVideos = valid;
                         }
                     } catch (e1) {
-                        console.warn('[Podcast] error with main cat_id:', e1);
+                        /* console.warn('[Podcast] error with main cat_id:', e1); */
                     }
 
                     // 2. Try alternate cat_id
@@ -228,7 +228,7 @@ const OtherSectionContentPage = () => {
                                 if (valid.length > 0) foundVideos = valid;
                             }
                         } catch (e2) {
-                            console.warn('[Podcast] error with alt cat_id:', e2);
+                            /* console.warn('[Podcast] error with alt cat_id:', e2); */
                         }
                     }
 
@@ -254,7 +254,7 @@ const OtherSectionContentPage = () => {
                                 }
                             }
                         } catch (e3) {
-                            console.warn('[Podcast] error with /getpodcast:', e3);
+                            /* console.warn('[Podcast] error with /getpodcast:', e3); */
                         }
                     }
 
@@ -266,7 +266,7 @@ const OtherSectionContentPage = () => {
                         setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                     }
                 } catch (ve) {
-                    console.warn('[Podcast] non-fatal:', ve.message);
+                    /* console.warn('[Podcast] non-fatal:', ve.message); */
                     setVideos(DEFAULT_FALLBACK_VIDEOS);
                     setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                 }
@@ -286,7 +286,7 @@ const OtherSectionContentPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error:', err);
+                /* console.error('Error:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

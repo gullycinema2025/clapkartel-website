@@ -114,11 +114,11 @@ const DirectorPage = () => {
                 } else if (Array.isArray(result)) {
                     setCountries(result);
                 } else {
-                    console.error('Unexpected countries response format:', result);
+                    /* console.error('Unexpected countries response format:', result); */
                     setCountries([]);
                 }
             } catch (err) {
-                console.error('Error fetching countries:', err);
+                /* console.error('Error fetching countries:', err); */
             } finally {
                 setLoadingCountries(false);
             }
@@ -161,11 +161,11 @@ const DirectorPage = () => {
                 } else if (Array.isArray(result)) {
                     setStates(result);
                 } else {
-                    console.error('Unexpected states response format:', result);
+                    /* console.error('Unexpected states response format:', result); */
                     setStates([]);
                 }
             } catch (err) {
-                console.error('Error fetching states:', err);
+                /* console.error('Error fetching states:', err); */
                 setStates([]);
             } finally {
                 setLoadingStates(false);
@@ -207,11 +207,11 @@ const DirectorPage = () => {
                 } else if (Array.isArray(result)) {
                     setCities(result);
                 } else {
-                    console.error('Unexpected cities response format:', result);
+                    /* console.error('Unexpected cities response format:', result); */
                     setCities([]);
                 }
             } catch (err) {
-                console.error('Error fetching cities:', err);
+                /* console.error('Error fetching cities:', err); */
                 setCities([]);
             } finally {
                 setLoadingCities(false);
@@ -282,7 +282,7 @@ const DirectorPage = () => {
                     }
                 }
 
-                console.log('Fetching directors from:', apiUrl);
+                /* console.log('Fetching directors from:', apiUrl); */
 
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -294,7 +294,7 @@ const DirectorPage = () => {
                 }
 
                 const result = await response.json();
-                console.log('Directors List API Response:', result);
+                /* console.log('Directors List API Response:', result); */
 
                 if (result?.userList && Array.isArray(result.userList)) {
                     setUsers(result.userList);
@@ -312,7 +312,7 @@ const DirectorPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error fetching directors:', err);
+                /* console.error('Error fetching directors:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

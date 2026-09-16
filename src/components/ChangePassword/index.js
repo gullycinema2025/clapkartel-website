@@ -62,7 +62,7 @@ const ChangePassword = () => {
             }
         } catch (error) {
             setMessage({ type: 'error', text: 'An error occurred while changing password. Please try again.' });
-            console.error('Change password error:', error);
+            /* console.error('Change password error:', error); */
         } finally {
             setLoading(false);
         }

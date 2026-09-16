@@ -102,7 +102,7 @@ const ProfileUpdate = () => {
                     setCountries(result);
                 }
             } catch (err) {
-                console.error('Error fetching countries:', err);
+                /* console.error('Error fetching countries:', err); */
             } finally {
                 setLoadingCountries(false);
             }
@@ -144,7 +144,7 @@ const ProfileUpdate = () => {
                     setStates(result);
                 }
             } catch (err) {
-                console.error('Error fetching states:', err);
+                /* console.error('Error fetching states:', err); */
                 setStates([]);
             } finally {
                 setLoadingStates(false);
@@ -186,7 +186,7 @@ const ProfileUpdate = () => {
                     setCities(result);
                 }
             } catch (err) {
-                console.error('Error fetching cities:', err);
+                /* console.error('Error fetching cities:', err); */
                 setCities([]);
             } finally {
                 setLoadingCities(false);
@@ -255,7 +255,7 @@ const ProfileUpdate = () => {
                     throw new Error('No profile data found');
                 }
             } catch (err) {
-                console.error('Error fetching profile data:', err);
+                /* console.error('Error fetching profile data:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -479,7 +479,7 @@ const ProfileUpdate = () => {
             }
 
         } catch (err) {
-            console.error('Error updating profile:', err);
+            /* console.error('Error updating profile:', err); */
             displayMessage('error', `Failed to update profile: ${err.message}`);
         } finally {
             setSubmitting(false);

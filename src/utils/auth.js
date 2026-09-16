@@ -17,7 +17,7 @@ export const getCurrentUserId = () => {
             const id = parsedData.user_id || parsedData.id || parsedData.userId;
             if (id) return String(id);
         } catch (error) {
-            console.error('Error parsing userData:', error);
+            /* console.error('Error parsing userData:', error); */
         }
     }
 
@@ -29,7 +29,7 @@ export const getCurrentUserId = () => {
             const id = parsedData.user_id || parsedData.id || parsedData.userId;
             if (id) return String(id);
         } catch (error) {
-            console.error('Error parsing user data:', error);
+            /* console.error('Error parsing user data:', error); */
         }
     }
 

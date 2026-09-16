@@ -110,7 +110,7 @@ const ActressPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error fetching data:', err);
+                /* console.error('Error fetching data:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -132,7 +132,7 @@ const ActressPage = () => {
                 setCountries(result.data || []);
             }
         } catch (e) {
-            console.error('Error fetching countries:', e);
+            /* console.error('Error fetching countries:', e); */
         }
     };
 
@@ -148,7 +148,7 @@ const ActressPage = () => {
                 setStates(result.data || []);
             }
         } catch (e) {
-            console.error('Error fetching states:', e);
+            /* console.error('Error fetching states:', e); */
         }
     };
 
@@ -164,7 +164,7 @@ const ActressPage = () => {
                 setCities(result.data || []);
             }
         } catch (e) {
-            console.error('Error fetching cities:', e);
+            /* console.error('Error fetching cities:', e); */
         }
     };
 
@@ -195,7 +195,7 @@ const ActressPage = () => {
                 setDirectoryList([]);
             }
         } catch (err) {
-            console.error('Error fetching directory:', err);
+            /* console.error('Error fetching directory:', err); */
             setDirectoryList([]);
         } finally {
             setLoadingDirectory(false);
@@ -271,7 +271,7 @@ const ActressPage = () => {
             const details = result.directoryview || result.data || result;
             setDirectoryItemDetails(details);
         } catch (err) {
-            console.error('Error fetching directory details:', err);
+            /* console.error('Error fetching directory details:', err); */
         } finally {
             setLoadingDetails(false);
         }

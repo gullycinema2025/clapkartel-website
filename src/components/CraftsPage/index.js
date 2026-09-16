@@ -79,17 +79,17 @@ const CraftPage = () => {
         }
 
         const categoryResult = await categoryResponse.json();
-        console.log('Category List API Response:', categoryResult);
+        /* console.log('Category List API Response:', categoryResult); */
 
         // Extract category list from response
         if (categoryResult?.categoryList && categoryResult.categoryList.length > 0) {
           const filteredCategories = categoryResult.categoryList.filter(cat => String(cat.id) !== '22');
           setCraftCategories(filteredCategories);
-          console.log('Craft Categories:', filteredCategories);
+          /* console.log('Craft Categories:', filteredCategories); */
         }
 
       } catch (err) {
-        console.error('Error fetching craft categories:', err);
+        /* console.error('Error fetching craft categories:', err); */
         setError(err.message);
       } finally {
         setLoading(false);
@@ -151,7 +151,7 @@ const CraftPage = () => {
                   alt={craft.cat_name}
                   className="craft-image"
                   onError={(e) => {
-                    console.error('Failed to load craft image:', craftImgSrc);
+                    /* console.error('Failed to load craft image:', craftImgSrc); */
                     e.target.src = 'https://placehold.co/120x120?text=No+Image';
                   }}
                 />

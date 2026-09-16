@@ -28,10 +28,10 @@ const Login = () => {
         window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
           size: 'invisible',
           callback: (response) => {
-            console.log('✅ reCAPTCHA verified successfully');
+            /* console.log('✅ reCAPTCHA verified successfully'); */
           },
           'expired-callback': () => {
-            console.log('❌ reCAPTCHA expired');
+            /* console.log('❌ reCAPTCHA expired'); */
             showToast('reCAPTCHA expired. Please try again.', 'error');
             if (window.recaptchaVerifier) {
               window.recaptchaVerifier.clear();
@@ -42,12 +42,12 @@ const Login = () => {
 
         // Render the reCAPTCHA
         window.recaptchaVerifier.render().then(() => {
-          console.log('✅ reCAPTCHA widget rendered');
+          /* console.log('✅ reCAPTCHA widget rendered'); */
         }).catch((error) => {
-          console.error('❌ reCAPTCHA render error:', error);
+          /* console.error('❌ reCAPTCHA render error:', error); */
         });
       } catch (error) {
-        console.error('❌ reCAPTCHA setup error:', error);
+        /* console.error('❌ reCAPTCHA setup error:', error); */
       }
     }
   };
@@ -55,13 +55,13 @@ const Login = () => {
   // Verify phone number with backend API
   const verifyPhoneNumberForLogin = async (phoneNumber) => {
     const url = `${ApiConstants.baseUrl}${ApiConstants.verifyOtp}`;
-    console.log('Requesting URL:', url);
+    /* console.log('Requesting URL:', url); */
 
     const body = JSON.stringify({
       phoneNumber: `+91${phoneNumber}`,
     });
 
-    console.log('Request body:', body);
+    /* console.log('Request body:', body); */
 
     try {
       const response = await fetch(url, {
@@ -73,19 +73,19 @@ const Login = () => {
       // Read the response body first
       const responseText = await response.text();
 
-      console.log('HTTP Status:', response.status);
-      console.log('Response Body:', responseText);
+      /* console.log('HTTP Status:', response.status); */
+      /* console.log('Response Body:', responseText); */
 
       if (response.status === 400) {
         // User exists, proceed with Firebase OTP
         return true;
       } else {
         showToast('Invalid Mobile Number. Please Sign Up', 'error');
-        console.log('Verification failed');
+        /* console.log('Verification failed'); */
         return false;
       }
     } catch (e) {
-      console.error('Error during verification:', e);
+      /* console.error('Error during verification:', e); */
       showToast('An error occurred. Please try again.', 'error');
       return false;
     }
@@ -95,7 +95,7 @@ const Login = () => {
   const handleTap = async () => {
     if (loading) return;
 
-    console.log('Starting phone verification...');
+    /* console.log('Starting phone verification...'); */
 
     const phone = mobileNumber.trim();
 
@@ -109,7 +109,7 @@ const Login = () => {
         appVerifier
       );
 
-      console.log('OTP sent successfully');
+      /* console.log('OTP sent successfully'); */
 
       // Store verification details in localStorage
       localStorage.setItem('phone', `+91${phone}`);
@@ -124,7 +124,7 @@ const Login = () => {
       navigate('/verify-otp');
 
     } catch (error) {
-      console.error('Error during phone verification:', error);
+      /* console.error('Error during phone verification:', error); */
       setLoading(false);
 
       // More specific error messages
@@ -143,39 +143,39 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log('=== FORM SUBMIT TRIGGERED ===');
-    console.log('Mobile Number:', mobileNumber);
-    console.log('Mobile Number Length:', mobileNumber.length);
-    console.log('Loading State:', loading);
+    /* console.log('=== FORM SUBMIT TRIGGERED ==='); */
+    /* console.log('Mobile Number:', mobileNumber); */
+    /* console.log('Mobile Number Length:', mobileNumber.length); */
+    /* console.log('Loading State:', loading); */
 
     if (mobileNumber.length !== 10) {
-      console.log('Validation failed: Phone number must be 10 digits');
+      /* console.log('Validation failed: Phone number must be 10 digits'); */
       showToast('Please enter a valid 10-digit mobile number', 'error');
       return;
     }
 
-    console.log('Starting login process...');
+    /* console.log('Starting login process...'); */
     setLoading(true);
 
     try {
       const phoneNumber = mobileNumber.trim();
-      console.log('Trimmed phone number:', phoneNumber);
+      /* console.log('Trimmed phone number:', phoneNumber); */
 
       // First verify with backend
-      console.log('Calling verifyPhoneNumberForLogin...');
+      /* console.log('Calling verifyPhoneNumberForLogin...'); */
       const canProceed = await verifyPhoneNumberForLogin(phoneNumber);
-      console.log('Backend verification result:', canProceed);
+      /* console.log('Backend verification result:', canProceed); */
 
       if (canProceed) {
         // If backend verification passes, send OTP via Firebase
-        console.log('Proceeding to Firebase OTP...');
+        /* console.log('Proceeding to Firebase OTP...'); */
         await handleTap();
       } else {
-        console.log('Backend verification failed, stopping here');
+        /* console.log('Backend verification failed, stopping here'); */
         setLoading(false);
       }
     } catch (error) {
-      console.error('Login Error:', error);
+      /* console.error('Login Error:', error); */
       showToast(error.message || 'Login failed', 'error');
       setLoading(false);
     }
@@ -220,10 +220,10 @@ const Login = () => {
               className="clapkart-login-submit-button"
               disabled={loading || mobileNumber.length !== 10}
               onClick={(e) => {
-                console.log('Button clicked!');
-                console.log('Mobile number:', mobileNumber);
-                console.log('Loading:', loading);
-                console.log('Length:', mobileNumber.length);
+                /* console.log('Button clicked!'); */
+                /* console.log('Mobile number:', mobileNumber); */
+                /* console.log('Loading:', loading); */
+                /* console.log('Length:', mobileNumber.length); */
               }}
             >
               {loading ? 'Processing...' : 'Send Verification Code'}

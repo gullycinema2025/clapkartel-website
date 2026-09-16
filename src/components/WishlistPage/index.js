@@ -102,7 +102,7 @@ const WishlistPage = () => {
         displayMessage('error', 'Failed to unblock user');
       }
     } catch (error) {
-      console.error("Error unblocking user:", error);
+      /* console.error("Error unblocking user:", error); */
       displayMessage('error', 'An error occurred. Please try again.');
     }
   };
@@ -137,12 +137,12 @@ const WishlistPage = () => {
         const result = JSON.parse(text);
         if (result.status === 'success' && result.data) {
           setWishlistItems(result.data);
-          console.log(result.data);
+          /* console.log(result.data); */
         } else {
           setWishlistItems([]);
         }
       } catch (err) {
-        console.error('Error fetching followers:', err);
+        /* console.error('Error fetching followers:', err); */
         setError('Failed to load followers');
       } finally {
         setLoading(false);
@@ -210,7 +210,7 @@ const WishlistPage = () => {
         displayMessage('error', 'Failed to unfollow');
       }
     } catch (err) {
-      console.error('Error unfollowing user:', err);
+      /* console.error('Error unfollowing user:', err); */
       displayMessage('error', 'Failed to unfollow. Please try again.');
     }
   };

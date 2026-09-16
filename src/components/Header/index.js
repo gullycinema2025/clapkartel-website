@@ -71,7 +71,7 @@ const Header = () => {
           }
         }
       } catch (err) {
-        console.error('Error fetching user data in Header:', err);
+        /* console.error('Error fetching user data in Header:', err); */
       }
     };
 

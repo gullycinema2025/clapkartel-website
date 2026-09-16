@@ -124,7 +124,7 @@ const InnerDataPage = () => {
                             if (valid.length > 0) foundVideos = valid;
                         }
                     } catch (e1) {
-                        console.warn('[Podcast] error with cat_id 22:', e1);
+                        /* console.warn('[Podcast] error with cat_id 22:', e1); */
                     }
 
                     // 2. Try cat_id 23
@@ -140,7 +140,7 @@ const InnerDataPage = () => {
                                 if (valid.length > 0) foundVideos = valid;
                             }
                         } catch (e2) {
-                            console.warn('[Podcast] error with cat_id 23:', e2);
+                            /* console.warn('[Podcast] error with cat_id 23:', e2); */
                         }
                     }
 
@@ -166,7 +166,7 @@ const InnerDataPage = () => {
                                 }
                             }
                         } catch (e3) {
-                            console.warn('[Podcast] error with /getpodcast:', e3);
+                            /* console.warn('[Podcast] error with /getpodcast:', e3); */
                         }
                     }
 
@@ -178,7 +178,7 @@ const InnerDataPage = () => {
                         setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                     }
                 } catch (ve) {
-                    console.warn('[Podcast] non-fatal:', ve.message);
+                    /* console.warn('[Podcast] non-fatal:', ve.message); */
                     setVideos(DEFAULT_FALLBACK_VIDEOS);
                     setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                 }
@@ -198,7 +198,7 @@ const InnerDataPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error fetching inner data:', err);
+                /* console.error('Error fetching inner data:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

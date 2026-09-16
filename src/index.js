@@ -19,7 +19,7 @@ if (rootElement) {
     </React.StrictMode>
   );
 } else {
-  console.error("❌ Root element with id='root' not found in DOM.");
+  /* console.error("❌ Root element with id='root' not found in DOM."); */
 }
 
 // Optional: measure app performance (you can remove this if not needed)

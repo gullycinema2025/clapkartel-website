@@ -24,10 +24,10 @@ const Footer = () => {
         });
 
         const data = await response.json();
-        console.log('=== [Footer API] ADDONS DATA ===', data);
+        /* console.log('=== [Footer API] ADDONS DATA ===', data); */
         setAddonsData(data);
       } catch (error) {
-        console.error('=== [Footer API] Error fetching addons ===', error);
+        /* console.error('=== [Footer API] Error fetching addons ===', error); */
       }
     };
 

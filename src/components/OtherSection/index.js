@@ -123,7 +123,7 @@ const OtherSections = () => {
         }
 
       } catch (err) {
-        console.error('Error fetching other sections:', err);
+        /* console.error('Error fetching other sections:', err); */
         setError(err.message);
       } finally {
         setLoading(false);

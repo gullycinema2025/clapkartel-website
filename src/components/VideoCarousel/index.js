@@ -107,7 +107,7 @@ const VideoCarousel = () => {
                     setSelectedVideo(fetchedVideos[0]);
                 }
             } catch (err) {
-                console.error('Error fetching videos:', err);
+                /* console.error('Error fetching videos:', err); */
             } finally {
                 setLoading(false);
             }

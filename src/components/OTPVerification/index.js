@@ -121,7 +121,7 @@ const OTPVerification = () => {
             });
 
             const responseData = await response.json().catch(() => ({}));
-            console.log('Login API Status:', response.status, 'Data:', responseData);
+            /* console.log('Login API Status:', response.status, 'Data:', responseData); */
 
             const isSuccess = response.status === 200 &&
                 (responseData.access_token || responseData.accessToken || responseData.token) &&
@@ -137,7 +137,7 @@ const OTPVerification = () => {
                 localStorage.setItem('refresh_token', refreshToken);
                 localStorage.setItem('token', accessToken); // Primary token key for API calls
 
-                console.log('✅ Token saved to localStorage');
+                /* console.log('✅ Token saved to localStorage'); */
 
                 if (responseData.userData) {
                     localStorage.setItem('pstatus', responseData.userData.pstatus || '');
@@ -165,7 +165,7 @@ const OTPVerification = () => {
                     errorMsg = 'This account is deactivated or login failed. Please contact support or sign up.';
                 }
 
-                console.warn('Login failed:', errorMsg);
+                /* console.warn('Login failed:', errorMsg); */
                 setLoading(false);
                 setErrorMessage(errorMsg);
                 showToast(errorMsg, 'error');
@@ -176,7 +176,7 @@ const OTPVerification = () => {
                 }, 2500);
             }
         } catch (e) {
-            console.error('Login API Error:', e);
+            /* console.error('Login API Error:', e); */
             const errorMsg = 'An error occurred during login. Please try again.';
             setLoading(false);
             setErrorMessage(errorMsg);
@@ -215,14 +215,14 @@ const OTPVerification = () => {
             const user = userCredential.user;
 
             if (user) {
-                console.log('Phone Verified Successfully:', user);
+                /* console.log('Phone Verified Successfully:', user); */
                 // Call the login API
                 await callLoginAPI();
             } else {
                 throw new Error('User not found after OTP verification');
             }
         } catch (error) {
-            console.error('Verification Error:', error);
+            /* console.error('Verification Error:', error); */
             setLoading(false);
 
             let msg = 'Verification failed. Please try again.';
@@ -263,7 +263,7 @@ const OTPVerification = () => {
             showToast('A new OTP has been sent successfully.', 'success');
         } catch (error) {
             cleanupRecaptcha();
-            console.error('Resend Error:', error);
+            /* console.error('Resend Error:', error); */
             showToast(error.code === 'auth/too-many-requests' ? 'Too many attempts. Try again later.' : error.message || 'Failed to resend code', 'error');
         } finally {
             setLoading(false);

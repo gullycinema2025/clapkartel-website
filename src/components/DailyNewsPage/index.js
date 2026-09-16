@@ -38,7 +38,7 @@ const DailyNewsPage = () => {
                 setError(null);
 
                 const apiUrl = `${BASE_URL}/api/content/${DAILY_NEWS_ID}`;
-                console.log('Fetching daily news from:', apiUrl);
+                /* console.log('Fetching daily news from:', apiUrl); */
 
                 const response = await fetch(apiUrl, {
                     method: 'GET',
@@ -50,7 +50,7 @@ const DailyNewsPage = () => {
                 }
 
                 const result = await response.json();
-                console.log('Daily News API Response:', result);
+                /* console.log('Daily News API Response:', result); */
 
                 if (result?.content && Array.isArray(result.content)) {
                     setNewsItems(result.content);
@@ -59,7 +59,7 @@ const DailyNewsPage = () => {
                 }
 
             } catch (err) {
-                console.error('Error fetching daily news:', err);
+                /* console.error('Error fetching daily news:', err); */
                 setError(err.message);
             } finally {
                 setLoading(false);

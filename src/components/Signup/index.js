@@ -197,7 +197,7 @@ const Signup = () => {
                     userExists = true;
                 }
             } catch (err) {
-                console.error('Backend check error:', err);
+                /* console.error('Backend check error:', err); */
                 if (err.message === 'Backend check timed out') {
                     setError('⏱️ Server is taking too long to respond. Please check your connection and try again.');
                     resetAfterError(false);
@@ -222,7 +222,7 @@ const Signup = () => {
                     'reCAPTCHA render timed out'
                 );
             } catch (rcErr) {
-                console.error('reCAPTCHA setup failed:', rcErr);
+                /* console.error('reCAPTCHA setup failed:', rcErr); */
                 setError(
                     rcErr.message === 'reCAPTCHA render timed out'
                         ? '⏱️ Security check is taking too long. Please refresh the page and try again.'
@@ -241,7 +241,7 @@ const Signup = () => {
                     'OTP request timed out'
                 );
             } catch (fbErr) {
-                console.error('Firebase OTP error:', fbErr);
+                /* console.error('Firebase OTP error:', fbErr); */
                 const msg =
                     fbErr.message === 'OTP request timed out'
                         ? '⏱️ OTP request timed out. Please try again.'
@@ -266,7 +266,7 @@ const Signup = () => {
             setOtpSent(true);
 
         } catch (unexpected) {
-            console.error('Unexpected signup error:', unexpected);
+            /* console.error('Unexpected signup error:', unexpected); */
             setError('❌ Something went wrong. Please try again or refresh the page.');
             resetAfterError(true);
         }
@@ -337,7 +337,7 @@ const Signup = () => {
             navigate('/');
 
         } catch (err) {
-            console.error('OTP verify / register error:', err);
+            /* console.error('OTP verify / register error:', err); */
             submittingRef.current = false;
             setLoading(false);
 
