@@ -245,7 +245,8 @@ const HomePage = () => {
       // No sub-detail page; navigate straight to content using section.other_id
       navigate('/other-section-content', {
         state: {
-          otherId: section.other_id,
+          otherId: section.other_id || section.id,
+          mainCatId: section.main_cat_id || '23',
           categoryName: section.sub_cat_name,
           sourcePage: '/'
         }
@@ -254,6 +255,7 @@ const HomePage = () => {
       navigate('/other-section-detail', {
         state: {
           sectionId: section.id,
+          mainCatId: section.main_cat_id || '23',
           sectionName: section.sub_cat_name,
           sectionImage: section.sub_picture || section.cat_image,
           sourcePage: '/'

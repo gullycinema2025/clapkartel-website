@@ -194,62 +194,92 @@ const OtherSectionContentPage = () => {
 
                 setContentItems(items);
 
-                // Fetch videos — matches mobile: /api/podcast/subcategory/?cat_id=23&sub_cat_id={contentId}
+                // Fetch videos — subcategory podcast matching backend /api/podcast/subcategory
                 try {
-                    const videoResponse = await fetch(`${BASE_URL}/api/podcast/subcategory/?cat_id=23&sub_cat_id=${contentId}`, {
-                        method: 'GET', headers: getAuthHeaders()
-                    });
-                    if (videoResponse.ok) {
-                        const videoResult = await videoResponse.json();
-                        console.log('=== [OtherSectionContent] PODCAST VIDEOS RESPONSE ===', videoResult);
-                        const videoData = videoResult?.data || videoResult?.result || [];
-                        const validVideos = Array.isArray(videoData) ? videoData.filter(v => v && (v.video_url || v.url)) : [];
-                        if (validVideos.length > 0) {
-                            setVideos(validVideos); setSelectedVideo(validVideos[0]);
-                        } else {
-                            const fb = await fetch(`${BASE_URL}/getpodcast`, { method: 'GET', headers: getAuthHeaders() });
-                            if (fb.ok) {
-                                const fbr = await fb.json();
-                                const fbd = fbr?.result || fbr?.data || [];
-                                const validFbd = Array.isArray(fbd) ? fbd.filter(v => v && (v.video_url || v.url)) : [];
-                                if (validFbd.length > 0) {
-                                    setVideos(validFbd); setSelectedVideo(validFbd[0]);
+                    const effectiveCatId = location.state?.mainCatId || '23';
+                    let foundVideos = [];
+
+                    // 1. Try /api/podcast/subcategory?cat_id=${effectiveCatId}&sub_cat_id=${contentId}
+                    try {
+                        const vRes = await fetch(`${BASE_URL}/api/podcast/subcategory?cat_id=${effectiveCatId}&sub_cat_id=${contentId}`, {
+                            method: 'GET', headers: getAuthHeaders()
+                        });
+                        if (vRes.ok) {
+                            const vResult = await vRes.json();
+                            const vData = vResult?.data || vResult?.result || [];
+                            const valid = Array.isArray(vData) ? vData.filter(v => v && (v.video_url || v.url)) : [];
+                            if (valid.length > 0) foundVideos = valid;
+                        }
+                    } catch (e1) {
+                        console.warn('[Podcast] error with main cat_id:', e1);
+                    }
+
+                    // 2. Try alternate cat_id
+                    if (foundVideos.length === 0) {
+                        const altCatId = effectiveCatId === '23' ? '22' : '23';
+                        try {
+                            const vRes = await fetch(`${BASE_URL}/api/podcast/subcategory?cat_id=${altCatId}&sub_cat_id=${contentId}`, {
+                                method: 'GET', headers: getAuthHeaders()
+                            });
+                            if (vRes.ok) {
+                                const vResult = await vRes.json();
+                                const vData = vResult?.data || vResult?.result || [];
+                                const valid = Array.isArray(vData) ? vData.filter(v => v && (v.video_url || v.url)) : [];
+                                if (valid.length > 0) foundVideos = valid;
+                            }
+                        } catch (e2) {
+                            console.warn('[Podcast] error with alt cat_id:', e2);
+                        }
+                    }
+
+                    // 3. Check /getpodcast filtering by matching sub_cat_id or contentId
+                    if (foundVideos.length === 0) {
+                        try {
+                            const fbRes = await fetch(`${BASE_URL}/getpodcast`, { method: 'GET', headers: getAuthHeaders() });
+                            if (fbRes.ok) {
+                                const fbResult = await fbRes.json();
+                                const allPodcasts = fbResult?.result || fbResult?.data || [];
+                                const matched = allPodcasts.filter(v =>
+                                    v && (v.video_url || v.url) && (
+                                        String(v.sub_cat_id) === String(contentId) ||
+                                        (String(v.cat_id) === String(contentId) && v.sub_cat_id === '0') ||
+                                        (displayName && v.title && v.title.toLowerCase().includes(displayName.toLowerCase()))
+                                    )
+                                );
+                                if (matched.length > 0) {
+                                    foundVideos = matched;
                                 } else {
-                                    setVideos(DEFAULT_FALLBACK_VIDEOS); setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
+                                    const allValid = allPodcasts.filter(v => v && (v.video_url || v.url));
+                                    if (allValid.length > 0) foundVideos = allValid;
                                 }
-                            } else {
-                                setVideos(DEFAULT_FALLBACK_VIDEOS); setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                             }
+                        } catch (e3) {
+                            console.warn('[Podcast] error with /getpodcast:', e3);
                         }
+                    }
+
+                    if (foundVideos.length > 0) {
+                        setVideos(foundVideos);
+                        setSelectedVideo(foundVideos[0]);
                     } else {
-                        const fb = await fetch(`${BASE_URL}/getpodcast`, { method: 'GET', headers: getAuthHeaders() });
-                        if (fb.ok) {
-                            const fbr = await fb.json();
-                            const fbd = fbr?.result || fbr?.data || [];
-                            const validFbd = Array.isArray(fbd) ? fbd.filter(v => v && (v.video_url || v.url)) : [];
-                            if (validFbd.length > 0) {
-                                setVideos(validFbd); setSelectedVideo(validFbd[0]);
-                            } else {
-                                setVideos(DEFAULT_FALLBACK_VIDEOS); setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
-                            }
-                        } else {
-                            setVideos(DEFAULT_FALLBACK_VIDEOS); setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
-                        }
+                        setVideos(DEFAULT_FALLBACK_VIDEOS);
+                        setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                     }
                 } catch (ve) {
                     console.warn('[Podcast] non-fatal:', ve.message);
-                    setVideos(DEFAULT_FALLBACK_VIDEOS); setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
+                    setVideos(DEFAULT_FALLBACK_VIDEOS);
+                    setSelectedVideo(DEFAULT_FALLBACK_VIDEOS[0]);
                 }
 
-                // Fetch banners
-                const bannerResponse = await fetch(`${BASE_URL}/dash/getbanners/1`, {
+                // Fetch banners (Category menu_id=2)
+                const bannerResponse = await fetch(`${BASE_URL}/dash/getbanners/2`, {
                     method: 'GET',
                     headers: getAuthHeaders()
                 });
                 if (bannerResponse.ok) {
                     const bannerResult = await bannerResponse.json();
                     if (bannerResult?.banners && Array.isArray(bannerResult.banners)) {
-                        setBannerData(bannerResult.banners);
+                        setBannerData(bannerResult.banners.filter(b => b.status === '1' || b.status === 1));
                     } else if (Array.isArray(bannerResult)) {
                         setBannerData(bannerResult);
                     }
