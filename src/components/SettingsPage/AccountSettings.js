@@ -26,41 +26,38 @@ const AccountSettings = () => {
         setDeleting(true);
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                alert("Session expired. Please login again.");
+                handleLogout();
+                return;
+            }
+
+            // MultipartRequest matching Flutter implementation
             const formData = new FormData();
             formData.append('status', '0');
 
-            const response = await fetch(`${ApiConstants.baseUrl}${ApiConstants.deleteUser}?status=0`, {
+            const response = await fetch(`${ApiConstants.baseUrl}/user/deleteuser`, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
-                    'Authorization': token ? `Bearer ${token}` : ''
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: formData
             });
 
-            const result = await response.json().catch(() => null);
-            console.log('=== [Delete User Response] ===', response.status, result);
+            console.log('Delete User Status Code:', response.status);
 
-            const isSuccess = response.ok && (
-                result?.status === true ||
-                result?.status === 200 ||
-                result?.status === '200' ||
-                result?.success === true ||
-                result?.status === 1 ||
-                result?.status === '1' ||
-                (result?.message && !result.message.toLowerCase().includes('required') && !result.message.toLowerCase().includes('error') && !result.message.toLowerCase().includes('fail'))
-            );
-
-            if (isSuccess) {
+            if (response.status === 200 || response.ok) {
+                const result = await response.json().catch(() => null);
                 alert(result?.message || result?.messages?.success || "Your account has been deleted successfully.");
                 handleLogout();
             } else {
+                const result = await response.json().catch(() => null);
                 const errMsg = result?.message || result?.messages?.error || result?.error || "Failed to delete account. Please try again.";
                 alert(errMsg);
             }
         } catch (error) {
-            console.error("Delete account error:", error);
-            alert("An error occurred. Please try again.");
+            console.error("Delete User Error:", error);
+            alert("An error occurred while deleting account. Please try again.");
         } finally {
             setDeleting(false);
             setShowDeleteModal(false);
