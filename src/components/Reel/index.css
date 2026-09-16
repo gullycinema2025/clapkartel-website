@@ -1,0 +1,1028 @@
+/* ================================================================
+   REELS PAGE — Instagram / YouTube Shorts style
+   ================================================================ */
+
+/* ── Force full-screen takeover on all screens ── */
+.reels-page {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+}
+
+/* ── Top bar ── */
+.reels-topbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+  z-index: 20;
+}
+
+/* Desktop: solid topbar so it doesn't fight the dark card layout */
+@media (min-width: 768px) {
+  .reels-topbar {
+    position: relative;
+    background: rgba(15,15,15,0.98);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    height: 56px;
+    flex-shrink: 0;
+  }
+
+  /* Feed fills remaining height */
+  .reels-feed {
+    flex: 1;
+    height: 0; /* flex child, not 100% */
+  }
+}
+
+.reels-back-btn,
+.reels-upload-topbar-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.2s;
+}
+
+.reels-back-btn:hover,
+.reels-upload-topbar-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.reels-topbar-title {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* ── Feed container — snap scroll ── */
+.reels-feed {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.reels-feed::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Individual reel slide ── */
+.reel-slide {
+  width: 100%;
+  height: 100%;
+  min-height: 100%; /* ensures snap works in flex container */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Desktop / Tablet: slide inner wrapper centers the card ── */
+.reel-slide-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Desktop: centered 9:16 card ── */
+.reel-card {
+  /* Mobile: take full space (card = full slide) */
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* ── Video itself ── */
+.reel-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  cursor: pointer;
+  user-select: none;
+}
+
+.reel-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Desktop / Tablet overrides ── */
+@media (min-width: 768px) {
+  /* Black background behind card on desktop */
+  .reels-feed {
+    background: #0a0a0a;
+  }
+
+  .reel-slide {
+    background: #0a0a0a;
+    overflow: visible;
+  }
+
+  .reel-slide-inner {
+    background: #0a0a0a;
+    gap: 32px;
+  }
+
+  /* Card: fixed height = 90% of viewport, width = 9/16 of that height */
+  .reel-card {
+    height: 90vh;
+    width: calc(90vh * 9 / 16);
+    max-width: 420px;
+    min-width: 260px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.85);
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .reel-video {
+    border-radius: 18px;
+  }
+
+  .reel-bottom-info {
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+  }
+}
+
+/* ── Play overlay ── */
+.reel-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.85);
+  font-size: 52px;
+  pointer-events: none;
+  z-index: 5;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+/* ── Sound Mute button overlay (Desktop Only) ── */
+.reel-mute-btn {
+  display: none !important; /* Strictly hidden on mobile & small screens */
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 12;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .reel-mute-btn {
+    display: flex !important; /* Visible only on desktop screens */
+  }
+}
+
+.reel-mute-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+/* ── Per-video buffering spinner ── */
+.reel-buffer-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+}
+
+.reel-spinner-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #bf8906;
+  animation: reelSpin 0.8s linear infinite;
+  box-shadow: 0 0 20px rgba(191, 137, 6, 0.35);
+}
+
+@keyframes reelSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Heart burst on double-tap ── */
+.reel-heart-burst {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff3b5c;
+  font-size: 90px;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(0 0 16px rgba(255,59,92,0.7));
+}
+
+/* ── Right side actions ── */
+.reel-actions {
+  position: absolute;
+  right: 10px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+.reel-action-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reel-action-item:hover {
+  transform: scale(1.12);
+}
+
+.reel-action-item span {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.reel-mute-btn {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.liked-icon {
+  animation: likePop 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes likePop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* ── Bottom gradient — covers full width including action buttons ── */
+.reel-bottom-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; /* full width so gradient covers action buttons too */
+  padding: 180px 16px 24px; /* tall top-padding so gradient reaches up past action bar */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.88) 0%,
+    rgba(0,0,0,0.55) 35%,
+    rgba(0,0,0,0.25) 60%,
+    transparent 100%
+  );
+  z-index: 8; /* below action buttons (z-index: 10) */
+  pointer-events: none; /* let clicks pass through to video */
+}
+
+/* Re-enable pointer events on the actual text content */
+.reel-user-row,
+.reel-title-text,
+.reel-desc-text,
+.reel-views {
+  pointer-events: auto;
+}
+
+.reel-user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reel-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.reel-username {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.reel-title-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
+
+.reel-desc-text {
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+  line-height: 1.4;
+  margin: 0 0 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.reel-views {
+  color: rgba(255,255,255,0.7);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* ================================================================
+   COMMENTS BOTTOM SHEET
+   ================================================================ */
+
+.comments-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+}
+
+.comments-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 70vh;
+  background: #1a1a1a;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 101;
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 -8px 40px rgba(0,0,0,0.6);
+}
+
+.comments-sheet.open {
+  transform: translateY(0);
+}
+
+/* On wider screens, constrain to center */
+@media (min-width: 600px) {
+  .comments-sheet {
+    max-width: 520px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(100%);
+    border-radius: 20px 20px 0 0;
+  }
+  .comments-sheet.open {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.comments-handle {
+  width: 38px;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+.comments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.comments-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.comments-close-btn {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  transition: color 0.2s;
+}
+
+.comments-close-btn:hover { color: #fff; }
+
+.comments-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.comments-list::-webkit-scrollbar { display: none; }
+
+.comments-loading,
+.comments-empty {
+  color: #888;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.comment-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  animation: commentFadeIn 0.25s ease;
+}
+
+@keyframes commentFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.comment-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.comment-body { flex: 1; }
+
+.comment-name {
+  display: block;
+  color: #bbb;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.comment-text {
+  color: #e5e5e5;
+  font-size: 13.5px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.comments-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  background: #131313;
+  border-radius: 0;
+}
+
+.comments-input-row input {
+  flex: 1;
+  background: #272727;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 22px;
+  padding: 10px 16px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.comments-input-row input:focus {
+  border-color: #bf8906;
+}
+
+.comments-input-row input::placeholder { color: #666; }
+
+.comments-input-row button {
+  background: none;
+  border: none;
+  color: #bf8906;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 6px 4px;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.comments-input-row button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ================================================================
+   UPLOAD MODAL
+   ================================================================ */
+
+.upload-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  backdrop-filter: blur(4px);
+}
+
+.upload-modal {
+  background: #1a1a1a;
+  width: 90%;
+  max-width: 460px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.6);
+}
+
+.upload-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.upload-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.upload-header button {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.upload-form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.upload-form label {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.upload-form input,
+.upload-form textarea {
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.upload-form input:focus,
+.upload-form textarea:focus {
+  border-color: #bf8906;
+}
+
+.upload-submit-btn {
+  margin-top: 8px;
+  background: linear-gradient(135deg, #bf8906, #d49a07);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(191,137,6,0.35);
+  transition: opacity 0.2s;
+}
+
+.upload-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ================================================================
+   LOADING / EMPTY SCREENS
+   ================================================================ */
+
+.reels-loading-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #bf8906;
+  gap: 14px;
+  font-size: 15px;
+  z-index: 999;
+}
+
+.reels-empty-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-size: 16px;
+}
+
+/* ================================================================
+   TOAST
+   ================================================================ */
+
+.reels-toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 300;
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.reels-toast.error {
+  background: rgba(220,50,50,0.85);
+}
+
+/* ================================================================
+   SPINNER
+   ================================================================ */
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ================================================================
+   REELS TABS & OPTIONS SHEET & DELETE MODAL
+   ================================================================ */
+
+.reels-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 6px;
+  border-radius: 24px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reels-tab-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reels-tab-btn.active {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.reel-more-btn-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reel-more-btn {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.reel-more-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.12);
+}
+
+.reel-more-tooltip {
+  position: absolute;
+  right: 54px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: rgba(18, 18, 18, 0.92);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  z-index: 50;
+}
+
+.reel-more-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(18, 18, 18, 0.92);
+}
+
+.reel-more-btn-wrap:hover .reel-more-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+.reels-upload-empty-btn {
+  margin-top: 16px;
+  background: linear-gradient(135deg, #bf8906, #d49a07);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(191, 137, 6, 0.4);
+  transition: opacity 0.2s;
+}
+
+.reels-upload-empty-btn:hover {
+  opacity: 0.9;
+}
+
+/* ── Reel Options Sheet (Matching Mobile BottomSheet) ── */
+.reel-options-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  width: 100%;
+  max-width: 420px;
+  background: #1e1e1e;
+  border-radius: 20px 20px 0 0;
+  padding: 16px 20px 28px;
+  z-index: 250;
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+}
+
+.reel-options-sheet.open {
+  transform: translate(-50%, 0);
+}
+
+.reel-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.reel-option-item {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.reel-option-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.reel-option-item.delete-option:hover {
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.reel-option-item.cancel-option {
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reel-option-item.cancel-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Delete Confirmation Modal (Matching Mobile Dialog) ── */
+.reel-delete-modal {
+  background: #181818;
+  width: 90%;
+  max-width: 380px;
+  border-radius: 20px;
+  padding: 28px 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  color: #fff;
+  position: relative;
+  z-index: 305;
+}
+
+.reel-delete-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.reel-delete-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.reel-delete-text {
+  margin: 0 0 24px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.reel-delete-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reel-delete-cancel-btn,
+.reel-delete-confirm-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reel-delete-cancel-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.reel-delete-cancel-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.reel-delete-confirm-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+
+.reel-delete-confirm-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.reel-delete-cancel-btn:disabled,
+.reel-delete-confirm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ================================================================
+   HIDE GLOBAL HEADER / NAVBAR / FOOTER WHEN ON REELS PAGE
+   ================================================================ */
+
+body.reels-active .header-container,
+body.reels-active .navbar-container,
+body.reels-active footer {
+  display: none !important;
+}

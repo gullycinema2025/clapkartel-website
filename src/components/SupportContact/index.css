@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sen:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clapkart-contact-auth-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Right Side */
+.clapkart-contact-auth-right {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.clapkart-contact-auth-form-container {
+  width: 100%;
+  max-width: 460px;
+  padding: 32px 32px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.clapkart-contact-logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.clapkart-contact-form-logo {
+  height: 90px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.clapkart-contact-auth-title {
+  color: #232323;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: 'Sen', sans-serif;
+  font-size: 37.851px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+  letter-spacing: -1.514px;
+  margin-bottom: 6px;
+}
+
+.clapkart-contact-auth-subtitle {
+  color: #969696;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: 'Sen', sans-serif;
+  font-size: 17.033px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  margin-bottom: 22px;
+}
+
+.clapkart-contact-form-group {
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.clapkart-contact-form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.clapkart-contact-form-label {
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  padding: 0 8px;
+  background: #ffffff;
+  color: #BF8906;
+  font-feature-settings: 'liga' off, 'clig' off;
+  font-family: 'Sen', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  z-index: 2;
+}
+
+.optional-text {
+  color: #9ca3af;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.clapkart-contact-form-input,
+.clapkart-contact-form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  border: 1.5px solid #e2e2e2;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #ffffff;
+  color: #232323;
+}
+
+.clapkart-contact-form-input {
+  height: 44px;
+}
+
+.clapkart-contact-form-textarea {
+  resize: vertical;
+  min-height: 100px;
+  padding-top: 14px;
+}
+
+.clapkart-contact-form-input:focus,
+.clapkart-contact-form-textarea:focus,
+.clapkart-contact-form-select:focus {
+  border-color: #bf8906;
+  box-shadow: 0 0 0 3px rgba(191, 137, 6, 0.15);
+}
+
+.clapkart-contact-form-input::placeholder,
+.clapkart-contact-form-textarea::placeholder {
+  color: #9ca3af;
+}
+
+.clapkart-contact-form-select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%239ca3af%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px top 50%;
+  background-size: 10px auto;
+  padding-right: 32px;
+}
+
+.clapkart-contact-submit-button {
+  width: 100%;
+  height: 44px;
+  background-color: #bf8906;
+  color: #FFF;
+  font-family: 'Sen', sans-serif;
+  font-size: 17.033px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 120%;
+  letter-spacing: -0.17px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.clapkart-contact-submit-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.clapkart-contact-submit-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+
+.clapkart-contact-auth-footer {
+  text-align: center;
+  margin-top: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.clapkart-contact-footer-text {
+  color: #6C6C6C;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.clapkart-contact-footer-link {
+  color: #BF8906;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clapkart-contact-footer-link:hover {
+  opacity: 0.8;
+}
+
+.clapkart-contact-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* Loading Dialog Styles */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  backdrop-filter: blur(2px);
+}
+
+.loading-dialog {
+  background-color: white;
+  padding: 50px 60px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in;
+}
+
+.loading-dialog p {
+  margin-top: 20px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Sen', sans-serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #bf8906;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .clapkart-contact-auth-right {
+    padding: 20px 16px;
+  }
+  .clapkart-contact-auth-form-container {
+    max-width: 100%;
+  }
+  .clapkart-contact-form-logo {
+    height: 100px;
+  }
+  .clapkart-contact-auth-title {
+    font-size: 28px;
+  }
+  .clapkart-contact-logo-container {
+    margin-bottom: 30px;
+  }
+  .clapkart-contact-form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .clapkart-contact-auth-title {
+    font-size: 24px;
+  }
+  .clapkart-contact-form-logo {
+    height: 90px;
+  }
+}

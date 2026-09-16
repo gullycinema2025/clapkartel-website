@@ -1,0 +1,333 @@
+.about-app-page-wrapper {
+    min-height: calc(100vh - 124px);
+    background-color: #FAFAFA;
+    padding: 32px 20px;
+    font-family: "Sen", sans-serif;
+}
+
+.about-app-header {
+    max-width: 900px;
+    margin: 0 auto 24px auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.about-app-back-arrow {
+    font-size: 32px;
+    font-weight: 400;
+    cursor: pointer;
+    color: #111;
+    line-height: 1;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
+
+.about-app-back-arrow:hover {
+    transform: translateX(-4px);
+    color: #BF8906;
+}
+
+.about-app-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+}
+
+.about-app-container-card {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #EAEAEA;
+    padding: 32px;
+}
+
+/* Tabs */
+.about-app-tabs {
+    display: flex;
+    gap: 12px;
+    border-bottom: 2px solid #F0F0F0;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+}
+
+.about-app-tab-btn {
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    background-color: #F5F5F5;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.about-app-tab-btn:hover {
+    background-color: #EFEFEF;
+    color: #111;
+}
+
+.about-app-tab-btn.active {
+    background-color: #BF8906;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(191, 137, 6, 0.3);
+}
+
+/* Fade in animation */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mission Section Card */
+.mission-card {
+    background: #FFFDF5;
+    border: 1px solid #F7E7C4;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 8px rgba(191, 137, 6, 0.05);
+}
+
+.mission-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Description Text Card */
+.about-text-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.about-text-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+    margin: 0;
+}
+
+.about-text-card strong {
+    color: #111;
+}
+
+/* Vision Card */
+.vision-card {
+    background: #111;
+    color: #FFF;
+    padding: 24px 28px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.vision-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.vision-header h3 {
+    margin: 0;
+    font-size: 17px;
+    color: #BF8906;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.vision-icon {
+    font-size: 20px;
+}
+
+.vision-quote {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #DDD;
+    margin: 0;
+    font-style: italic;
+}
+
+.vision-quote span {
+    color: #BF8906;
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Mobile Features List */
+.features-section {
+    margin-top: 24px;
+}
+
+.features-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 18px;
+}
+
+.mobile-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.mobile-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background-color: #F9FAFB;
+    border: 1px solid #EAEAEA;
+    border-radius: 16px;
+    padding: 16px 20px;
+    transition: all 0.2s ease;
+}
+
+.mobile-feature-item:hover {
+    background-color: #FFFDF5;
+    border-color: #BF8906;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.mobile-feature-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #E8F5E9;
+    color: #2E7D32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.mobile-feature-name {
+    font-size: 16.5px;
+    font-weight: 600;
+    color: #222;
+}
+
+/* Copyright Footer */
+.app-copyright-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #F0F0F0;
+    color: #888;
+    font-size: 14px;
+}
+
+.app-copyright-footer p {
+    margin: 4px 0;
+}
+
+/* Advisory Members */
+.advisory-header-info {
+    margin-bottom: 28px;
+}
+
+.advisory-header-info h2 {
+    margin: 0 0 6px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #111;
+}
+
+.advisory-header-info p {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
+
+.advisory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.advisory-card {
+    background: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: all 0.25s ease;
+}
+
+.advisory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    border-color: #BF8906;
+}
+
+.advisory-image-container {
+    width: 100%;
+    height: 220px;
+    background-color: #F5F5F5;
+    overflow: hidden;
+}
+
+.advisory-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.advisory-card:hover .advisory-photo {
+    transform: scale(1.04);
+}
+
+.advisory-details {
+    padding: 20px;
+}
+
+.advisory-name {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+}
+
+.advisory-role {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #BF8906;
+    background-color: #FFFDF5;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid #F7E7C4;
+    margin-bottom: 12px;
+}
+
+.advisory-about {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .about-app-container-card {
+        padding: 20px;
+    }
+    .about-app-tabs {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,44 @@
+# Clap Kartel
+
+> Clap Kartel is a premier cinema and entertainment industry networking platform connecting actors, directors, technicians across 24 film crafts with casting calls, equipment rentals, filmmaking lessons, industry updates, talent showcases, and professional collaboration.
+
+## Core Features & Sections
+
+- [24 Crafts](https://clapkartel.com/craft): Comprehensive directory and talent matching across all 24 filmmaking crafts including Direction, Cinematography, Editing, Acting, Screenplay Writing, Music Direction, Choreography, Stunts, Art Direction, and Sound Design.
+- [Casting Calls & Auditions](https://clapkartel.com/casting): Verified casting notices, audition announcements, and artist requirements for feature films, web series, short films, ad films, and commercial projects.
+- [Cinema Lessons](https://clapkartel.com/lessons): Filmmaking masterclasses, acting workshops, direction tutorials, cinematography techniques, and behind-the-scenes master guides.
+- [Rentals & Equipment](https://clapkartel.com/rentals): Film cameras, lenses, lighting rigs, sound gear, studio spaces, shooting floors, and location equipment rentals.
+- [Talent Directory](https://clapkartel.com/directory): Searchable directory of verified industry artists, technicians, cast, and crew members with rich portfolio profiles.
+- [Actors & Actresses](https://clapkartel.com/cast-crew): Dedicated spotlights and directories for male, female, and child actors, voiceover artists, and background cast.
+- [Directors & Crew](https://clapkartel.com/director): Experienced and emerging film directors, assistant directors, creative producers, and cinematographers.
+- [Reels & Video Showcases](https://clapkartel.com/reels): Short-form cinema videos, audition tapes, showreels, and performance highlights.
+- [Other Sections & Industry Insights](https://clapkartel.com/other-section): Daily posts, music releases, industry news, award updates, trailers, and film festival announcements.
+
+## Community & Networking
+
+- [User Profiles](https://clapkartel.com/user-profile): Complete professional profiles with craft specializations, filmography, media galleries, contact info, and experience records.
+- [Direct Messaging](https://clapkartel.com/messages): Real-time communication and collaboration between creators, production houses, and artists.
+- [Notifications](https://clapkartel.com/notification): Real-time alerts for casting updates, application statuses, network connections, and community posts.
+- [Wishlist & Following](https://clapkartel.com/followers): Bookmarked profiles, favorite artists, and saved listings.
+
+## Authentication & Account
+
+- [Login with OTP](https://clapkartel.com/login): Secure mobile number and SMS OTP verification.
+- [Login with Password](https://clapkartel.com/login-password): Direct mobile number and password authentication.
+- [Sign Up](https://clapkartel.com/signup): Account creation for artists, technicians, production houses, and cinema fans.
+- [Account Settings](https://clapkartel.com/account-settings): Profile management, craft selection, location preferences, and account security.
+- [Privacy Policy](https://clapkartel.com/privacy-policy): Privacy commitments, data protection, and user rights.
+- [Terms & Conditions](https://clapkartel.com/terms-conditions): Terms of service and community standards.
+
+## Platform Information
+
+- **Name**: Clap Kartel (Everything About Cinema)
+- **Concept & Design**: eParivartan
+- **Website**: https://clapkartel.com
+- **Mobile Apps**: Available on Android (Google Play Store) and iOS (Apple App Store)
+- **Social Channels**:
+  - Instagram: https://www.instagram.com/clapkartelcinema/
+  - Threads: https://www.threads.net/@clapkartelcinema
+  - YouTube: https://www.youtube.com/@ClapKartelCinema
+  - X (Twitter): https://x.com/ClapKartelCine
+  - Pinterest: https://www.pinterest.com/clapkartelcinema/

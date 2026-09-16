@@ -1,0 +1,983 @@
+/* ============================================ */
+/* CRAFT PAGE STYLES - MATCHING OTHER SECTIONS */
+/* ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap");
+
+.craft-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.craft-title {
+  color: #BF8906;
+  font-family: "Sen", sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.craft-grid {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px 45px;
+}
+
+.craft-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.craft-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Image Wrapper - Matching OtherSections dimensions */
+.craft-image-wrapper {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.craft-image {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  object-fit: contain;
+  display: block;
+}
+
+.craft-name {
+  color: #000;
+  text-align: center;
+  font-family: "Sen", sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+  width: 100%;
+  word-wrap: normal;
+  word-break: normal;
+  overflow-wrap: normal;
+  min-height: 36px;
+}
+
+/* Loading Styles */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #BF8906;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error Styles */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 16px;
+  margin-bottom: 16px;
+  font-family: "Sen", sans-serif;
+}
+
+.retry-button {
+  padding: 10px 24px;
+  background-color: #BF8906;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Sen", sans-serif;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: #a07705;
+}
+
+/* ============================================ */
+/* MODERN MINIMAL MODAL WITH GRADIENT & 3D EFFECTS */
+/* ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+  border-radius: 24px;
+  width: 90%;
+  max-width: 550px;
+  max-height: 75vh;
+  overflow: hidden;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(191, 137, 6, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Decorative Background Circles */
+.modal-bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.modal-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(191, 137, 6, 0.08) 0%, rgba(191, 137, 6, 0.02) 70%, transparent 100%);
+  animation: floatCircle 20s infinite ease-in-out;
+}
+
+.modal-circle-1 {
+  width: 300px;
+  height: 300px;
+  top: -150px;
+  right: -150px;
+  animation-delay: 0s;
+}
+
+.modal-circle-2 {
+  width: 200px;
+  height: 200px;
+  bottom: -100px;
+  left: -100px;
+  animation-delay: 5s;
+}
+
+.modal-circle-3 {
+  width: 150px;
+  height: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 10s;
+}
+
+@keyframes floatCircle {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* Modal Header */
+.modal-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #bf8906 0%, #d4a221 50%, #e0b23e 100%);
+  border-bottom: 2px solid rgba(165, 117, 5, 0.3);
+  box-shadow: 0 4px 12px rgba(191, 137, 6, 0.2);
+}
+
+.modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.modal-logo-container {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(145deg, #ffffff, #f8f8f8);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 0 0 3px rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.modal-logo-container:hover {
+  transform: translateZ(10px) rotateY(5deg);
+}
+
+.modal-craft-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.modal-craft-title {
+  color: #ffffff;
+  font-family: "Sen", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.3px;
+}
+
+.modal-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-weight: 300;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Body */
+.modal-body {
+  position: relative;
+  z-index: 1;
+  padding: 28px;
+  overflow-y: auto;
+  max-height: calc(75vh - 110px);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(248, 248, 248, 0.3) 100%);
+}
+
+/* Loading State */
+.modal-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  gap: 16px;
+}
+
+.modal-loader {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(191, 137, 6, 0.1);
+  border-top: 4px solid #bf8906;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(191, 137, 6, 0.2);
+}
+
+.modal-loading p {
+  color: #666;
+  font-family: "Sen", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Error & Empty States */
+.modal-error,
+.modal-empty {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.modal-error p,
+.modal-empty p {
+  color: #999;
+  font-family: "Sen", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.modal-error p {
+  color: #d32f2f;
+}
+
+/* Subcategory Grid - Pill/Chip Layout */
+.modal-subcategory-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.subcategory-chip {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #fafafa 100%);
+  border: 2px solid #e5e5e5;
+  border-radius: 30px;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  overflow: hidden;
+}
+
+.subcategory-chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(191, 137, 6, 0.1) 0%, rgba(212, 162, 33, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.subcategory-chip:hover {
+  border-color: #bf8906;
+  box-shadow:
+    0 6px 20px rgba(191, 137, 6, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.subcategory-chip:hover::before {
+  opacity: 1;
+}
+
+.subcategory-chip-text {
+  position: relative;
+  z-index: 1;
+  color: #333;
+  font-family: "Sen", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+
+.subcategory-chip:hover .subcategory-chip-text {
+  color: #bf8906;
+}
+
+/* Custom Scrollbar */
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.02);
+  border-radius: 10px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #bf8906 0%, #d4a221 100%);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a57505 0%, #bf8906 100%);
+}
+
+/* ============================================ */
+/* RESPONSIVE STYLES - MATCHING OTHER SECTIONS */
+/* ============================================ */
+
+/* Tablet View (768px - 1024px) */
+@media (max-width: 1024px) {
+  .craft-page {
+    padding: 35px 25px;
+  }
+
+  .craft-title {
+    font-size: 32px;
+    margin-bottom: 35px;
+  }
+
+  .craft-grid {
+    gap: 25px 40px;
+  }
+
+  .craft-item {
+    width: 110px;
+  }
+
+  /* Match OtherSections: 55px */
+  .craft-image-wrapper {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
+    max-width: 55px;
+    max-height: 55px;
+  }
+
+  .craft-image {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
+    max-width: 55px;
+    max-height: 55px;
+  }
+
+  .craft-name {
+    font-size: 17px;
+    min-height: 38px;
+  }
+
+  /* Modal Responsive */
+  .modal-content {
+    max-width: 500px;
+    width: 95%;
+    border-radius: 20px;
+  }
+
+  .modal-header {
+    padding: 20px 24px;
+  }
+
+  .modal-logo-container {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+  }
+
+  .modal-craft-title {
+    font-size: 22px;
+  }
+
+  .modal-close-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .modal-body {
+    padding: 24px;
+  }
+
+  .modal-subcategory-grid {
+    gap: 10px;
+  }
+
+  .subcategory-chip {
+    padding: 10px 18px;
+  }
+
+  .subcategory-chip-text {
+    font-size: 14px;
+  }
+}
+
+/* Mobile Landscape (max-width: 768px) */
+@media (max-width: 768px) {
+  .craft-page {
+    padding: 30px 20px;
+  }
+
+  .craft-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .craft-grid {
+    gap: 25px 35px;
+    justify-content: center;
+  }
+
+  .craft-item {
+    width: 105px;
+  }
+
+  /* Match OtherSections: 50px */
+  .craft-image-wrapper {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    margin-bottom: 10px;
+  }
+
+  .craft-image {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .craft-name {
+    font-size: 16px;
+    min-height: 38px;
+  }
+}
+
+/* Mobile Portrait (max-width: 480px) */
+@media (max-width: 480px) {
+  .craft-page {
+    padding: 25px 15px;
+  }
+
+  .craft-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .craft-grid {
+    gap: 25px 30px;
+  }
+
+  .craft-item {
+    width: 95px;
+  }
+
+  /* Match OtherSections: 45px */
+  .craft-image-wrapper {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+    margin-bottom: 10px;
+  }
+
+  .craft-image {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .craft-name {
+    font-size: 14px;
+    min-height: 36px;
+  }
+
+  /* Modal Responsive */
+  .modal-overlay {
+    padding: 16px;
+  }
+
+  .modal-content {
+    width: 100%;
+    max-height: 82vh;
+    border-radius: 18px;
+  }
+
+  .modal-header {
+    padding: 18px 20px;
+  }
+
+  .modal-header-left {
+    gap: 12px;
+  }
+
+  .modal-logo-container {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+  }
+
+  .modal-craft-title {
+    font-size: 19px;
+  }
+
+  .modal-close-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .modal-body {
+    padding: 20px;
+    max-height: calc(82vh - 100px);
+  }
+
+  .modal-subcategory-grid {
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .subcategory-chip {
+    padding: 9px 16px;
+    border-radius: 25px;
+  }
+
+  .subcategory-chip-text {
+    font-size: 13px;
+  }
+
+  .modal-loading {
+    padding: 40px 16px;
+  }
+
+  .modal-loader {
+    width: 42px;
+    height: 42px;
+  }
+
+  .modal-error,
+  .modal-empty {
+    padding: 40px 16px;
+  }
+
+  .modal-circle-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .modal-circle-2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .modal-circle-3 {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Small Mobile (max-width: 375px) */
+@media (max-width: 375px) {
+  .craft-page {
+    padding: 20px 12px;
+  }
+
+  .craft-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .craft-grid {
+    gap: 20px 25px;
+  }
+
+  .craft-item {
+    width: 85px;
+  }
+
+  /* Match OtherSections: 40px */
+  .craft-image-wrapper {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    margin-bottom: 8px;
+  }
+
+  .craft-image {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .craft-name {
+    font-size: 13px;
+    min-height: 34px;
+  }
+
+  /* Modal Responsive */
+  .modal-content {
+    border-radius: 16px;
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+  }
+
+  .modal-header-left {
+    gap: 10px;
+  }
+
+  .modal-logo-container {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    padding: 8px;
+  }
+
+  .modal-craft-title {
+    font-size: 17px;
+  }
+
+  .modal-close-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .modal-body {
+    padding: 18px;
+  }
+
+  .subcategory-chip {
+    padding: 8px 14px;
+    border-radius: 20px;
+  }
+
+  .subcategory-chip-text {
+    font-size: 12px;
+  }
+
+  .modal-loading p,
+  .modal-error p,
+  .modal-empty p {
+    font-size: 14px;
+  }
+}
+
+/* Special handling for 360px screens */
+@media (max-width: 360px) {
+  .craft-grid {
+    gap: 20px 22px;
+  }
+
+  .craft-item {
+    width: 80px;
+  }
+
+  /* Match OtherSections: 45px (special case) */
+  .craft-image-wrapper {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .craft-image {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    min-height: 45px;
+    max-width: 45px;
+    max-height: 45px;
+  }
+
+  .craft-name {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+}
+
+/* Extra Small Mobile (max-width: 320px) */
+@media (max-width: 320px) {
+  .craft-page {
+    padding: 18px 10px;
+  }
+
+  .craft-title {
+    font-size: 20px;
+    margin-bottom: 18px;
+  }
+
+  .craft-grid {
+    gap: 18px 20px;
+  }
+
+  .craft-item {
+    width: 75px;
+  }
+
+  /* Match OtherSections: 35px */
+  .craft-image-wrapper {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+    margin-bottom: 7px;
+  }
+
+  .craft-image {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 35px;
+    max-height: 35px;
+  }
+
+  .craft-name {
+    font-size: 11px;
+    min-height: 32px;
+    line-height: 1.2;
+  }
+
+  /* Modal Responsive */
+  .modal-content {
+    border-radius: 14px;
+  }
+
+  .modal-header {
+    padding: 14px 16px;
+  }
+
+  .modal-logo-container {
+    width: 36px;
+    height: 36px;
+  }
+
+  .modal-craft-title {
+    font-size: 15px;
+  }
+
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .modal-body {
+    padding: 16px;
+  }
+
+  .subcategory-chip {
+    padding: 7px 12px;
+  }
+
+  .subcategory-chip-text {
+    font-size: 11px;
+  }
+}
+
+/* iPhone SE and similar small devices */
+@media screen and (max-width: 375px) and (max-height: 667px) {
+  .craft-grid {
+    gap: 20px 24px;
+  }
+
+  /* Match OtherSections: 40px */
+  .craft-image-wrapper {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .craft-image {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+  }
+
+  .craft-name {
+    font-size: 12px;
+  }
+}
+
+/* Smooth Animations */
+@media (prefers-reduced-motion: reduce) {
+
+  .modal-circle,
+  .subcategory-chip,
+  .modal-close-btn {
+    animation: none;
+    transition: none;
+  }
+}

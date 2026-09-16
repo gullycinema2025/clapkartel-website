@@ -1,0 +1,844 @@
+/* Import SF Pro Display and Sen fonts */
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap");
+
+/* ============================================ */
+/* PAGE WRAPPER                                 */
+/* ============================================ */
+
+.oscp-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background: #f2f2f2;
+    margin-top: -12px;
+}
+
+/* ============================================ */
+/* LOADING / ERROR / EMPTY STATE               */
+/* ============================================ */
+
+.oscp-loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+    font-family: 'Sen', sans-serif;
+    color: #666;
+}
+
+.oscp-loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: oscp-spin 1s linear infinite;
+}
+
+@keyframes oscp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.oscp-back-btn {
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Sen', sans-serif;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.oscp-back-btn:hover {
+    background: #333;
+}
+
+/* ============================================ */
+/* BREADCRUMB NAVIGATION                        */
+/* ============================================ */
+
+.oscp-breadcrumb-header {
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto 10px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.oscp-breadcrumb-content {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.oscp-back-arrow {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+    transition: opacity 0.2s;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+.oscp-back-arrow:hover {
+    opacity: 0.6;
+}
+
+.oscp-breadcrumb-title {
+    color: #000;
+    font-family: "SF Pro Display", "Sen", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: normal;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-width: 0;
+}
+
+.oscp-breadcrumb-link {
+    color: #000;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+}
+
+.oscp-breadcrumb-link:hover {
+    opacity: 0.6;
+}
+
+.oscp-breadcrumb-sep {
+    color: #000;
+    font-weight: 400;
+}
+
+.oscp-breadcrumb-current {
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ============================================ */
+/* TWO-COLUMN LAYOUT                            */
+/* ============================================ */
+
+.oscp-two-column-layout {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 15px auto 40px auto;
+    padding: 0 20px;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+/* ============================================ */
+/* LEFT COLUMN — VIDEO + BANNERS                */
+/* ============================================ */
+
+.oscp-left-column {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.oscp-video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+}
+
+.oscp-video-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.oscp-video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-family: 'Sen', sans-serif;
+    font-size: 16px;
+}
+
+.oscp-video-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.oscp-video-nav:hover {
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.oscp-video-nav-left {
+    left: 12px;
+}
+
+.oscp-video-nav-right {
+    right: 12px;
+}
+
+/* Banner Strip */
+.oscp-banner-strip {
+    width: 100%;
+    height: 106px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.oscp-banner-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.oscp-banner-card {
+    flex-shrink: 0;
+    height: 106px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.oscp-banner-card:hover {
+    transform: scale(1.02);
+}
+
+.oscp-banner-img {
+    height: 100%;
+    width: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* ============================================ */
+/* RIGHT COLUMN — CONTENT CARDS                 */
+/* ============================================ */
+
+.oscp-right-column {
+    flex: 1;
+    min-width: 0;
+}
+
+.oscp-content-card-container {
+    background: #FFF;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Media Grid */
+.oscp-media-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.oscp-media-card {
+    background: #F9F9F9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.oscp-media-card:hover {
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px);
+}
+
+/* Thumbnail */
+.oscp-media-thumb {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    background: #e0e0e0;
+    border-radius: 10px 10px 0 0;
+}
+
+.oscp-media-thumb-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Play overlay for YouTube */
+.oscp-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.oscp-media-card:hover .oscp-play-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.oscp-play-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #333;
+    padding-left: 3px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Text info */
+.oscp-media-info {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.oscp-media-title {
+    font-family: "Sen", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.45;
+}
+
+.oscp-file-link {
+    font-family: "Sen", sans-serif;
+    font-size: 13px;
+    color: #BF8906;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.oscp-file-link:hover {
+    text-decoration: underline;
+    color: #a07705;
+}
+
+/* Fallback list (for inner-list fallback) */
+.oscp-fallback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.oscp-fallback-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s ease;
+    background: #F9F9F9;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.oscp-fallback-item:hover {
+    background: #f0f0f0;
+}
+
+.oscp-fallback-name {
+    font-family: "Sen", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.oscp-fallback-arrow {
+    font-size: 16px;
+    color: #999;
+    font-weight: 600;
+}
+
+/* ============================================ */
+/* RESPONSIVE DESIGN                            */
+/* ============================================ */
+
+@media screen and (max-width: 1100px) {
+    .oscp-two-column-layout {
+        gap: 20px;
+    }
+
+    .oscp-banner-img {
+        height: auto;
+        max-height: clamp(60px, 14vw, 106px);
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .oscp-two-column-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .oscp-left-column {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .oscp-video-container {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        position: relative;
+        border-radius: 12px;
+    }
+
+    .oscp-video-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .oscp-video-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .oscp-banner-strip {
+        width: 100%;
+        height: auto;
+        gap: 10px;
+    }
+
+    .oscp-banner-card {
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .oscp-banner-img {
+        height: auto;
+        max-height: clamp(60px, 14vw, 90px);
+    }
+
+    .oscp-right-column {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .oscp-content-card-container {
+        padding: 16px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .oscp-breadcrumb-header {
+        padding: 0 14px;
+        margin: 14px auto 6px auto;
+    }
+
+    .oscp-breadcrumb-content {
+        gap: 10px;
+    }
+
+    .oscp-breadcrumb-title {
+        font-size: 14px;
+        gap: 5px;
+    }
+
+    .oscp-back-arrow {
+        font-size: 24px;
+    }
+
+    .oscp-two-column-layout {
+        padding: 0 12px;
+        gap: 14px;
+        margin: 10px auto 24px auto;
+    }
+
+    .oscp-left-column {
+        gap: 14px;
+    }
+
+    .oscp-video-container {
+        border-radius: 10px;
+    }
+
+    .oscp-video-nav {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    .oscp-video-nav-left {
+        left: 8px;
+    }
+
+    .oscp-video-nav-right {
+        right: 8px;
+    }
+
+    .oscp-banner-strip {
+        gap: 8px;
+    }
+
+    .oscp-banner-card {
+        border-radius: 6px;
+    }
+
+    .oscp-banner-img {
+        max-height: clamp(55px, 18vw, 80px);
+    }
+
+    .oscp-content-card-container {
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .oscp-media-grid {
+        gap: 12px;
+    }
+
+    .oscp-media-card {
+        border-radius: 8px;
+    }
+
+    .oscp-media-thumb {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .oscp-media-thumb-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .oscp-media-thumb {
+        position: relative;
+    }
+
+    .oscp-play-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .oscp-media-info {
+        padding: 12px 14px;
+        gap: 6px;
+    }
+
+    .oscp-media-title {
+        font-size: 13px;
+    }
+
+    .oscp-file-link {
+        font-size: 12px;
+    }
+
+    .oscp-fallback-item {
+        padding: 12px 14px;
+        margin-bottom: 6px;
+        border-radius: 7px;
+    }
+
+    .oscp-fallback-name {
+        font-size: 13px;
+    }
+
+    .oscp-fallback-arrow {
+        font-size: 14px;
+    }
+
+    .oscp-loading-container {
+        min-height: 250px;
+        padding: 2rem 1rem;
+    }
+
+    .oscp-loading-container p {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .oscp-back-btn {
+        font-size: 13px;
+        padding: 8px 18px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .oscp-breadcrumb-header {
+        padding: 0 10px;
+        margin: 12px auto 4px auto;
+    }
+
+    .oscp-breadcrumb-content {
+        gap: 8px;
+    }
+
+    .oscp-breadcrumb-title {
+        font-size: 13px;
+        gap: 4px;
+    }
+
+    .oscp-back-arrow {
+        font-size: 22px;
+    }
+
+    .oscp-two-column-layout {
+        padding: 0 10px;
+        gap: 12px;
+        margin: 8px auto 20px auto;
+    }
+
+    .oscp-left-column {
+        gap: 12px;
+    }
+
+    .oscp-video-container {
+        border-radius: 8px;
+    }
+
+    .oscp-video-nav {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+    }
+
+    .oscp-video-nav-left {
+        left: 6px;
+    }
+
+    .oscp-video-nav-right {
+        right: 6px;
+    }
+
+    .oscp-banner-strip {
+        gap: 6px;
+    }
+
+    .oscp-banner-img {
+        max-height: clamp(50px, 16vw, 70px);
+    }
+
+    .oscp-content-card-container {
+        padding: 10px;
+    }
+
+    .oscp-media-grid {
+        gap: 10px;
+    }
+
+    .oscp-media-card {
+        border-radius: 7px;
+    }
+
+    .oscp-media-info {
+        padding: 10px 12px;
+        gap: 5px;
+    }
+
+    .oscp-media-title {
+        font-size: 12px;
+    }
+
+    .oscp-file-link {
+        font-size: 11px;
+    }
+
+    .oscp-play-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .oscp-fallback-item {
+        padding: 10px 12px;
+        margin-bottom: 6px;
+    }
+
+    .oscp-fallback-name {
+        font-size: 12px;
+    }
+
+    .oscp-fallback-arrow {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .oscp-breadcrumb-header {
+        padding: 0 8px;
+    }
+
+    .oscp-breadcrumb-title {
+        font-size: 12px;
+        gap: 3px;
+    }
+
+    .oscp-back-arrow {
+        font-size: 20px;
+    }
+
+    .oscp-two-column-layout {
+        padding: 0 8px;
+        gap: 10px;
+    }
+
+    .oscp-content-card-container {
+        padding: 8px;
+        border-radius: 7px;
+    }
+
+    .oscp-media-grid {
+        gap: 8px;
+    }
+
+    .oscp-media-info {
+        padding: 8px 10px;
+    }
+
+    .oscp-media-title {
+        font-size: 11.5px;
+    }
+
+    .oscp-file-link {
+        font-size: 10.5px;
+    }
+
+    .oscp-play-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+        padding-left: 2px;
+    }
+
+    .oscp-fallback-item {
+        padding: 10px 10px;
+    }
+
+    .oscp-fallback-name {
+        font-size: 11px;
+    }
+
+    .oscp-video-nav {
+        width: 26px;
+        height: 26px;
+        font-size: 14px;
+    }
+
+    .oscp-banner-img {
+        max-height: clamp(45px, 15vw, 62px);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .oscp-breadcrumb-title {
+        font-size: 11px;
+    }
+
+    .oscp-two-column-layout {
+        padding: 0 6px;
+        gap: 8px;
+    }
+
+    .oscp-content-card-container {
+        padding: 6px;
+    }
+
+    .oscp-media-grid {
+        gap: 6px;
+    }
+
+    .oscp-media-info {
+        padding: 7px 8px;
+    }
+
+    .oscp-media-title {
+        font-size: 11px;
+    }
+
+    .oscp-video-container {
+        border-radius: 6px;
+    }
+
+    .oscp-banner-img {
+        max-height: clamp(40px, 14vw, 56px);
+    }
+
+    .oscp-fallback-item {
+        padding: 8px 8px;
+        border-radius: 6px;
+        margin-bottom: 5px;
+    }
+
+    .oscp-fallback-name {
+        font-size: 10.5px;
+    }
+}

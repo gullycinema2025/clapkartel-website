@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YYTB65DXK3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-YYTB65DXK3');
+  </script>
+
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/clapkart-fav-icon1.jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description"
+    content="Clapkartel - Your ultimate destination for casting, entertainment, and talent management." />
+
+  <!-- Preconnect & DNS-Prefetch for Speed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://www.whysocial.in" />
+  <link rel="dns-prefetch" href="https://www.whysocial.in" />
+  <link rel="dns-prefetch" href="https://img.youtube.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  <!-- Open Graph meta tags for social media sharing -->
+  <meta property="og:title" content="Clapkartel - Casting & Entertainment Solutions" />
+  <meta property="og:description"
+    content="Your ultimate destination for casting, entertainment, and talent management." />
+  <meta property="og:image" content="%PUBLIC_URL%/logo512.png" />
+  <meta property="og:url" content="https://www.clapkartel.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Clapkartel" />
+
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Clapkartel - Casting & Entertainment Solutions" />
+  <meta name="twitter:description"
+    content="Your ultimate destination for casting, entertainment, and talent management." />
+  <meta name="twitter:image" content="%PUBLIC_URL%/logo512.png" />
+
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="alternate" type="text/plain" href="%PUBLIC_URL%/llms.txt" title="LLM Content" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- Optimized Google Fonts Loading -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;700;800&display=swap" />
+  </noscript>
+  <title>Clapkartel - Everything About Cinema</title>
+</head>
+
+<body>
+  <!-- Suppress Google reCAPTCHA timeout errors BEFORE React's error overlay loads -->
+  <script>
+    window.addEventListener('error', function (e) {
+      if (e.message && e.message.indexOf('reCAPTCHA') !== -1) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+        return true;
+      }
+    });
+    window.addEventListener('unhandledrejection', function (e) {
+      var msg = (e.reason && e.reason.message) || (typeof e.reason === 'string' ? e.reason : '');
+      if (msg.indexOf('reCAPTCHA') !== -1) {
+        e.stopImmediatePropagation();
+        e.preventDefault();
+      }
+    });
+  </script>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <div id="recaptcha-container"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`. 
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>

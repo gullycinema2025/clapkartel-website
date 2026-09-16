@@ -1,0 +1,54 @@
+/* ==================== CAROUSEL STYLES ==================== */
+
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 1s ease-in-out;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.carousel-image {
+  margin-left: 16px;
+  margin-right: 16px;
+  border-radius: 8px;
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+
+@media (max-width: 640px) {
+  .carousel-container {
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .carousel-image {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    margin-left: 4px;
+    margin-right: 4px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .carousel-image {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+}

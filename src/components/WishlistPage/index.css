@@ -1,0 +1,486 @@
+/* Redesigned Followers Page Stylesheet (Rectangular List Layout) */
+.wishlist-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    font-family: 'Sen', sans-serif;
+    min-height: 80vh;
+}
+
+/* Header & Badges */
+.wishlist-header {
+    margin-bottom: 32px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 16px;
+}
+
+.wishlist-title {
+    color: #1a1c20;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wishlist-count-badge {
+    background-color: #fffdf5;
+    border: 1px solid #f3e5c8;
+    color: #bf8906;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* List Layout */
+.wishlist-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Rectangular Card Design */
+.wishlist-card {
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01);
+}
+
+.wishlist-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    border-color: #bf8906;
+}
+
+/* Card Left Section */
+.wishlist-card-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+}
+
+/* Avatar Layout */
+.wishlist-avatar-container {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #fffdf5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    transition: transform 0.2s ease;
+}
+
+.wishlist-avatar-container:hover {
+    transform: scale(1.05);
+}
+
+.wishlist-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wishlist-fallback-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #bf8906 0%, #d49a07 100%);
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Info Details */
+.wishlist-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.wishlist-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1c20;
+    margin: 0;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.wishlist-name:hover {
+    color: #bf8906;
+}
+
+.wishlist-profession {
+    font-size: 11px;
+    font-weight: 600;
+    color: #bf8906;
+    background-color: #fffdf5;
+    border: 1px solid #f3e5c8;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+/* Actions Area */
+.wishlist-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-left: 24px;
+}
+
+.wishlist-btn {
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    border: 1px solid transparent;
+    font-family: 'Sen', sans-serif;
+    min-width: 110px;
+    text-align: center;
+}
+
+.btn-view {
+    border: 1px solid #eaeaea;
+    background-color: #ffffff;
+    color: #555555;
+}
+
+.btn-view:hover {
+    border-color: #bf8906;
+    color: #bf8906;
+    background-color: #fffdf5;
+}
+
+.btn-unfollow {
+    background-color: #fff5f5;
+    color: #e74c3c;
+}
+
+.btn-unfollow:hover {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+/* Empty State Styling */
+.wishlist-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #eaeaea;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+
+.empty-state-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.wishlist-empty-state h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1c20;
+    margin: 0 0 8px 0;
+}
+
+.wishlist-empty-state p {
+    font-size: 15px;
+    color: #666666;
+    max-width: 420px;
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+.empty-state-btn {
+    background: linear-gradient(135deg, #bf8906 0%, #d49a07 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Sen', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(191, 137, 6, 0.2);
+}
+
+.empty-state-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(191, 137, 6, 0.3);
+}
+
+/* Loading & Error States */
+.wishlist-loading-container,
+.wishlist-error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 24px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #eaeaea;
+    text-align: center;
+}
+
+.wishlist-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #fffdf5;
+    border-top: 3px solid #bf8906;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+/* Confirmation Modal (Unfollow) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(4px);
+}
+
+.unfollow-modal-content {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    max-width: 420px;
+    width: 90%;
+    overflow: hidden;
+    animation: modalSlideUp 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes modalSlideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.unfollow-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #eef0f2;
+}
+
+.unfollow-modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1c20;
+}
+
+.unfollow-modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #888888;
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.unfollow-modal-close:hover {
+    background: #f5f5f5;
+    color: #333333;
+}
+
+.unfollow-modal-body {
+    padding: 24px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #555555;
+}
+
+.unfollow-modal-body strong {
+    color: #bf8906;
+}
+
+.unfollow-modal-footer {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px;
+    background: #fbfbf9;
+    border-top: 1px solid #eef0f2;
+    justify-content: flex-end;
+}
+
+.unfollow-modal-cancel,
+.unfollow-modal-confirm {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Sen', sans-serif;
+}
+
+.unfollow-modal-cancel {
+    background: white;
+    color: #555555;
+    border: 1px solid #eaeaea;
+}
+
+.unfollow-modal-cancel:hover {
+    background: #f5f5f5;
+    color: #333333;
+}
+
+.unfollow-modal-confirm {
+    background: #e74c3c;
+    color: white;
+}
+
+.unfollow-modal-confirm:hover {
+    background: #c0392b;
+}
+
+/* Toast Message Alerts */
+.message-popup {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 99999;
+    font-size: 14px;
+    font-weight: 600;
+    min-width: 280px;
+    max-width: 480px;
+}
+
+.message-success {
+    background: #2bac76;
+    color: white;
+}
+
+.message-error {
+    background: #e74c3c;
+    color: white;
+}
+
+.message-icon {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Rules */
+@media (max-width: 768px) {
+    .wishlist-page {
+        padding: 30px 20px;
+    }
+    
+    .wishlist-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .wishlist-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 20px;
+    }
+    
+    .wishlist-card-left {
+        width: 100%;
+        gap: 14px;
+    }
+    
+    .wishlist-avatar-container {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .wishlist-name {
+        font-size: 17px;
+    }
+    
+    .wishlist-actions {
+        width: 100%;
+        margin-left: 0;
+        gap: 8px;
+        justify-content: stretch;
+    }
+    
+    .wishlist-btn {
+        flex: 1;
+        min-width: 0;
+    }
+}

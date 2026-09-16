@@ -1,0 +1,367 @@
+/* ============================================ */
+/* SETTINGS PAGE STYLES */
+/* ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700&display=swap");
+
+.settings-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: auto;
+    background: #f2f2f2;
+    padding: 0 20px 30px 20px;
+    font-family: 'Sen', sans-serif;
+    margin-top: -12px;
+}
+
+/* Header Area */
+.settings-header {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #d1d5db;
+}
+
+.settings-back-arrow {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+    position: absolute;
+    left: 0;
+    user-select: none;
+    transition: opacity 0.2s;
+}
+
+.settings-back-arrow:hover {
+    opacity: 0.6;
+}
+
+.settings-title {
+    flex: 1;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+/* Main Card */
+.settings-container-card {
+    background: #ffffff;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Sections */
+.settings-section {
+    margin-bottom: 30px;
+}
+
+.settings-section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 16px;
+}
+
+/* Item Cards / Rows */
+.settings-item-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.settings-item-card:hover {
+    background: #f0f0f0;
+}
+
+.settings-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.settings-icon {
+    font-size: 18px;
+    color: #4a4a4a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-item-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+.settings-arrow {
+    font-size: 24px;
+    font-weight: 300;
+    color: #888;
+    line-height: 1;
+}
+
+/* Custom Toggle Switch for Notifications */
+.settings-item-card.toggle-card {
+    cursor: default;
+}
+
+.settings-item-card.toggle-card:hover {
+    background: #f9f9f9;
+}
+
+.settings-toggle {
+    width: 48px;
+    height: 26px;
+    background: #d1d5db;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.settings-toggle.active {
+    background: #7c3aed;
+    /* Purple custom color from screenshot */
+}
+
+.settings-toggle-circle {
+    width: 22px;
+    height: 22px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.settings-toggle.active .settings-toggle-circle {
+    transform: translateX(22px);
+}
+
+/* Logout Button */
+.settings-logout-btn {
+    width: 100%;
+    padding: 16px;
+    background: #B68515;
+    /* Custom Gold Color */
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Sen', sans-serif;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.2s ease;
+}
+
+.settings-logout-btn:hover {
+    background: #966f11;
+}
+
+
+/* ============================================ */
+/* SUBPAGES TEXT/CONTENT STYLES */
+/* ============================================ */
+
+.text-content-card {
+    padding: 30px 40px;
+}
+
+.text-content-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #111;
+}
+
+.text-content-subtitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.text-content-paragraph {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.text-content-list {
+    margin: 0 0 20px 0;
+    padding-left: 20px;
+    color: #444;
+}
+
+.text-content-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.mb-2 {
+    margin-bottom: 8px;
+}
+
+/* Support Details */
+.support-contact-card {
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    cursor: default;
+}
+
+.support-contact-card:hover {
+    background: #f9f9f9;
+}
+
+.support-info-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.support-title {
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+}
+
+.support-value {
+    font-size: 14px;
+    color: #666;
+    margin-top: 4px;
+    word-break: break-all;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .settings-container-card {
+        padding: 20px 15px;
+    }
+
+    .settings-item-card {
+        padding: 14px 16px;
+    }
+
+    .text-content-card {
+        padding: 20px 15px;
+    }
+}
+
+/* Account Settings Custom Red Theme & Version */
+.text-red {
+    color: #dc2626 !important;
+}
+
+.settings-version-footer {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
+    margin-top: 24px;
+    font-weight: 500;
+}
+
+/* Confirmation Modals */
+.settings-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.settings-modal-content {
+    background: #ffffff;
+    padding: 24px 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.settings-modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 12px;
+}
+
+.settings-modal-text {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.settings-modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.settings-modal-btn {
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: background 0.2s;
+}
+
+.settings-modal-btn.cancel {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.settings-modal-btn.cancel:hover {
+    background: #d1d5db;
+}
+
+.settings-modal-btn.confirm-logout {
+    background: #B68515;
+    color: white;
+}
+
+.settings-modal-btn.confirm-logout:hover {
+    background: #966f11;
+}
+
+.settings-modal-btn.confirm-delete {
+    background: #dc2626;
+    color: white;
+}
+
+.settings-modal-btn.confirm-delete:hover {
+    background: #b91c1c;
+}

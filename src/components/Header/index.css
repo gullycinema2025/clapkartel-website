@@ -1,0 +1,455 @@
+/* ==================== HEADER STYLES ==================== */
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 105px;
+  background: linear-gradient(180deg, #5D4000 3.22%, #070500 96.25%);
+  padding-left: 80px;
+  padding-right: 80px;
+  font-family: sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-container .header-logo {
+  height: 130px;
+  width: auto;
+  max-width: 280px;
+  flex-shrink: 0;
+  object-fit: contain;
+  cursor: pointer;
+  transform: translateY(3px);
+  /* Shift visual center down to avoid top clipping */
+  transition: transform 0.3s ease;
+}
+
+.header-search-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-left: 80px;
+  margin-right: auto;
+  width: 33.333%;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 6px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.header-search-wrapper:focus-within {
+  border-color: #FFDC26;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-search-input {
+  background: transparent;
+  width: 100%;
+  flex: 1;
+  min-width: 0;
+  margin: 4px;
+  outline: none;
+  font-family: sans-serif;
+  border: none;
+  color: white;
+  font-size: 14px;
+}
+
+.header-search-input::placeholder {
+  color: #a3a3a3;
+}
+
+.header-search-icon {
+  margin: 4px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.header-search-icon:hover {
+  opacity: 1;
+}
+
+/* Desktop Logout Button */
+.header-logout-button {
+  background: #FFDC26;
+  color: black;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-left: auto;
+  font-family: sans-serif;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.header-logout-button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 220, 38, 0.3);
+}
+
+.header-logout-button:active {
+  transform: translateY(0);
+}
+
+/* Hamburger Icon for Mobile/Tablet */
+.header-hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: auto;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.header-hamburger-button:hover {
+  background-color: rgba(255, 220, 38, 0.1);
+}
+
+/* ==================== MOBILE DRAWER STYLES ==================== */
+
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 9998;
+  animation: fadeIn 0.3s ease;
+}
+
+.mobile-drawer-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100%;
+  background: linear-gradient(180deg, #1C1402 0%, #070500 100%);
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-drawer-panel.open {
+  right: 0;
+}
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 220, 38, 0.1);
+  height: 84px;
+  box-sizing: border-box;
+}
+
+.drawer-logo {
+  height: 48px;
+  width: auto;
+  cursor: pointer;
+}
+
+.drawer-close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.drawer-close-button:hover {
+  background-color: rgba(255, 220, 38, 0.1);
+}
+
+.mobile-drawer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 0;
+}
+
+.mobile-drawer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-drawer-item {
+  display: flex;
+  align-items: center;
+  padding: 14px 24px;
+  color: #E0E0E0;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.mobile-drawer-item:hover {
+  background-color: rgba(255, 220, 38, 0.05);
+  color: #FFDC26;
+  padding-left: 28px;
+}
+
+.mobile-drawer-item.active {
+  background-color: rgba(255, 220, 38, 0.08);
+  color: #FFDC26;
+  font-weight: bold;
+  border-left: 4px solid #FFDC26;
+}
+
+.drawer-item-icon {
+  margin-right: 14px;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.mobile-drawer-item:hover .drawer-item-icon,
+.mobile-drawer-item.active .drawer-item-icon {
+  opacity: 1;
+}
+
+.drawer-badge {
+  background-color: #E74C3C;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 7px;
+  border-radius: 10px;
+  margin-left: auto;
+  line-height: 1;
+  box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
+}
+
+.mobile-drawer-footer {
+  padding: 24px;
+  border-top: 1px solid rgba(255, 220, 38, 0.1);
+}
+
+.drawer-logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  background-color: #FFDC26;
+  color: black;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-family: sans-serif;
+}
+
+.drawer-logout-button:hover {
+  background-color: #e0be1b;
+}
+
+.drawer-logout-button:active {
+  transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+
+@media (max-width: 1200px) {
+  .header-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .header-search-wrapper {
+    margin-left: 40px;
+    width: 40%;
+  }
+}
+
+/* Mobile & Tablet Layout Breakpoint */
+@media (max-width: 1023px) {
+  .header-container {
+    height: 74px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .header-container .header-logo {
+    height: 60px;
+    transform: translateY(2px);
+  }
+
+  .header-logout-button {
+    display: none;
+  }
+
+  .header-hamburger-button {
+    display: flex !important;
+  }
+
+  .header-search-wrapper {
+    margin-left: 24px;
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    flex-wrap: wrap;
+    height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    justify-content: space-between;
+  }
+
+  .header-container .header-logo {
+    height: 54px;
+  }
+
+  .header-search-wrapper {
+    margin-left: 0;
+    width: 100%;
+    order: 3;
+    margin-top: 12px;
+  }
+
+  .header-search-input {
+    font-size: 13px;
+    padding: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .header-container .header-logo {
+    height: 58px;
+    max-width: 180px;
+  }
+
+  .header-search-wrapper {
+    margin-top: 10px;
+  }
+}
+
+/* ==================== DESKTOP HEADER MENU ==================== */
+
+.header-right-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header-right-menu li {
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: 'Sen', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.header-right-menu li:hover {
+  color: #FFDC26;
+  transform: translateY(-1px);
+}
+
+.header-profile-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-profile-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #FFDC26;
+}
+
+.header-profile-initials {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #C5E063;
+  /* Matching the green/lime color from the screenshot */
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+  font-family: 'Sen', sans-serif;
+  border: 1.5px solid #FFDC26;
+}
+
+.header-badge {
+  background-color: #E74C3C;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-left: 6px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.3);
+}
+
+@media (max-width: 1023px) {
+  .header-right-menu {
+    display: none !important;
+  }
+}

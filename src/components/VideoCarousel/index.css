@@ -1,0 +1,348 @@
+/* Video Carousel Component Styles */
+
+.video-carousel-wrapper {
+    width: 90%;
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Loading State */
+.video-carousel-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 1rem;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(191, 137, 6, 0.2);
+    border-top-color: #bf8906;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.video-carousel-loading p {
+    color: #bf8906;
+    font-size: 1.2rem;
+    font-family: 'Sen', sans-serif;
+}
+
+/* Main Video Player */
+.video-player-main {
+    width: 100%;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.main-video-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Video Carousel Container */
+.video-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.video-carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Navigation Buttons */
+.video-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(191, 137, 6, 0.9);
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    line-height: 1;
+    padding: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.video-nav-btn:hover {
+    background: #bf8906;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 15px rgba(191, 137, 6, 0.5);
+}
+
+.prev-video-btn {
+    left: 1rem;
+}
+
+.next-video-btn {
+    right: 1rem;
+}
+
+/* Video Card */
+.video-card {
+    flex-shrink: 0;
+    width: 400px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(191, 137, 6, 0.3);
+    border-color: #bf8906;
+}
+
+.video-card.active {
+    border-color: #bf8906;
+    box-shadow: 0 8px 25px rgba(191, 137, 6, 0.4);
+}
+
+/* Video Thumbnail */
+.video-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 225px;
+    overflow: hidden;
+    background: #000;
+}
+
+.thumbnail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.video-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(191, 137, 6, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    padding-left: 5px;
+}
+
+/* Video Info */
+.video-info {
+    padding: 1rem;
+    background: #fff;
+}
+
+.video-title {
+    font-family: 'Sen', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 44px;
+}
+
+.video-description {
+    font-family: 'Sen', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 42px;
+}
+
+/* Responsive Design */
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .video-carousel-wrapper {
+        width: calc(100% - 60px);
+    }
+
+    .video-player-main {
+        height: 400px;
+    }
+
+    .video-card {
+        width: 350px;
+    }
+
+    .video-thumbnail {
+        height: 200px;
+    }
+
+    .video-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .video-carousel-wrapper {
+        width: calc(100% - 40px);
+        gap: 1.5rem;
+    }
+
+    .video-player-main {
+        height: 300px;
+    }
+
+    .video-card {
+        width: 280px;
+    }
+
+    .video-thumbnail {
+        height: 160px;
+    }
+
+    .video-title {
+        font-size: 14px;
+        min-height: 40px;
+    }
+
+    .video-description {
+        font-size: 12px;
+        min-height: 36px;
+    }
+
+    .play-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .video-nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+
+    .prev-video-btn {
+        left: 0.5rem;
+    }
+
+    .next-video-btn {
+        right: 0.5rem;
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .video-carousel-wrapper {
+        width: calc(100% - 30px);
+        gap: 1rem;
+    }
+
+    .video-player-main {
+        height: 250px;
+    }
+
+    .video-card {
+        width: 240px;
+    }
+
+    .video-thumbnail {
+        height: 135px;
+    }
+
+    .video-info {
+        padding: 0.75rem;
+    }
+
+    .video-title {
+        font-size: 13px;
+    }
+
+    .video-description {
+        font-size: 11px;
+    }
+
+    .video-nav-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Extra Small Mobile (max-width: 375px) */
+@media screen and (max-width: 375px) {
+    .video-carousel-wrapper {
+        width: calc(100% - 20px);
+    }
+
+    .video-player-main {
+        height: 220px;
+    }
+
+    .video-card {
+        width: 220px;
+    }
+
+    .video-thumbnail {
+        height: 125px;
+    }
+}

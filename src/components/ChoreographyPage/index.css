@@ -1,0 +1,160 @@
+
+
+.choreography-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.choreography-title {
+  color: #BF8906;
+  font-family: Sen;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 35px;
+  text-align: left;
+}
+
+.choreography-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 35px 20px;
+}
+
+.choreographer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.choreographer-card:hover {
+  transform: translateY(-5px);
+}
+
+.choreographer-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.choreographer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.choreographer-name {
+  margin: 0 0 4px 0;
+  text-align: left;
+  color: #000;
+  font-family: Sen;
+  font-size: 24.607px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.choreographer-location {
+  margin: 0;
+  text-align: left;
+  color: #000;
+  font-family: Sen;
+  font-size: 16.405px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+}
+
+/* Tablet View */
+@media (max-width: 1024px) {
+  .choreography-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px 18px;
+  }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+  .choreography-page {
+    padding: 30px 15px;
+  }
+
+  .choreography-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  .choreography-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px 15px;
+  }
+
+  .choreographer-name {
+    font-size: 16px;
+  }
+
+  .choreographer-location {
+    font-size: 13px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .choreography-page {
+    padding: 20px 12px;
+  }
+
+  .choreography-title {
+    font-size: 28px;
+    margin-bottom: 25px;
+  }
+
+  .choreography-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 12px;
+  }
+
+  .choreographer-image-wrapper {
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+  .choreographer-name {
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+
+  .choreographer-location {
+    font-size: 12px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 375px) {
+  .choreography-title {
+    font-size: 24px;
+  }
+
+  .choreography-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 10px;
+  }
+
+  .choreographer-name {
+    font-size: 14px;
+  }
+
+  .choreographer-location {
+    font-size: 11px;
+  }
+}

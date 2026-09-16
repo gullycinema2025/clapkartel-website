@@ -1,0 +1,111 @@
+/* ==================== NAVBAR STYLES ==================== */
+
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 36px;
+  padding-left: 80px;
+  padding-right: 80px;
+  margin-bottom: 12px;
+  height: auto;
+  min-height: 36px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #EFEFEF;
+  color: #1D1D1D;
+  font-family: 'Sen', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 130%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 112px;
+  z-index: 99;
+}
+
+.navbar-left-menu,
+.navbar-right-menu {
+  display: contents;
+}
+
+.navbar-left-menu li,
+.navbar-right-menu li {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  list-style: none;
+}
+
+.navbar-left-menu li:hover,
+.navbar-right-menu li:hover {
+  color: #5D4000;
+  transform: translateY(-1px);
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+
+/* Custom breakpoints for seamless desktop resizing without overlaps */
+
+@media (max-width: 1440px) {
+  .navbar-container {
+    justify-content: flex-start;
+    gap: 28px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: auto;
+    min-height: 36px;
+  }
+
+  .navbar-left-menu li,
+  .navbar-right-menu li {
+    white-space: normal;
+    text-align: center;
+    max-width: 85px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 1200px) {
+  .navbar-container {
+    justify-content: space-between;
+    padding-left: 24px;
+    padding-right: 24px;
+    height: auto;
+    min-height: 36px;
+  }
+
+  .navbar-left-menu li,
+  .navbar-right-menu li {
+    white-space: normal;
+    text-align: center;
+    max-width: 75px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 1080px) {
+  .navbar-container {
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: auto;
+    min-height: 36px;
+  }
+
+  .navbar-left-menu li,
+  .navbar-right-menu li {
+    white-space: normal;
+    text-align: center;
+    max-width: 65px;
+    line-height: 1.2;
+  }
+}
+
+/* Switch completely to Mobile Drawer at < 1024px width */
+@media (max-width: 1023px) {
+  .navbar-container {
+    display: none !important;
+  }
+}

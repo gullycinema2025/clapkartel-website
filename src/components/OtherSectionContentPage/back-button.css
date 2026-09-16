@@ -1,0 +1,27 @@
+/* Back button styles for modals and pages */
+.back-button {
+    padding: 10px 24px;
+    background-color: #BF8906;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "Sen", sans-serif;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    background-color: #a07705;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(191, 137, 6, 0.3);
+}
+
+.back-button:active {
+    transform: translateY(0);
+}
