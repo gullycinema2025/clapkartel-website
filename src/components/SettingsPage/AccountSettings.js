@@ -11,6 +11,7 @@ const AccountSettings = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleting, setDeleting] = useState(false);
+    const [statusModal, setStatusModal] = useState({ show: false, title: '', message: '', isSuccess: false });
 
     const handleLogout = () => {
         try {
@@ -27,8 +28,12 @@ const AccountSettings = () => {
         try {
             const token = localStorage.getItem('token');
             if (!token) {
-                alert("Session expired. Please login again.");
-                handleLogout();
+                setStatusModal({
+                    show: true,
+                    title: "Session Expired",
+                    message: "Session expired. Please login again.",
+                    isSuccess: true
+                });
                 return;
             }
 
@@ -45,22 +50,37 @@ const AccountSettings = () => {
             });
 
             console.log('Delete User Status Code:', response.status);
+            setShowDeleteModal(false);
 
             if (response.status === 200 || response.ok) {
                 const result = await response.json().catch(() => null);
-                alert(result?.message || result?.messages?.success || "Your account has been deleted successfully.");
-                handleLogout();
+                setStatusModal({
+                    show: true,
+                    title: "Account Deleted",
+                    message: result?.message || result?.messages?.success || "User deactivated successfully.",
+                    isSuccess: true
+                });
             } else {
                 const result = await response.json().catch(() => null);
                 const errMsg = result?.message || result?.messages?.error || result?.error || "Failed to delete account. Please try again.";
-                alert(errMsg);
+                setStatusModal({
+                    show: true,
+                    title: "Error",
+                    message: errMsg,
+                    isSuccess: false
+                });
             }
         } catch (error) {
             console.error("Delete User Error:", error);
-            alert("An error occurred while deleting account. Please try again.");
+            setShowDeleteModal(false);
+            setStatusModal({
+                show: true,
+                title: "Error",
+                message: "An error occurred while deleting account. Please try again.",
+                isSuccess: false
+            });
         } finally {
             setDeleting(false);
-            setShowDeleteModal(false);
         }
     };
 
@@ -203,6 +223,39 @@ const AccountSettings = () => {
                             <button className="settings-modal-btn cancel" onClick={() => setShowDeleteModal(false)} disabled={deleting}>Cancel</button>
                             <button className="settings-modal-btn confirm-delete" onClick={handleDeleteAccount} disabled={deleting}>
                                 {deleting ? "Deleting..." : "Delete"}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Status / Message Popup Modal */}
+            {statusModal.show && (
+                <div
+                    className="settings-modal-backdrop"
+                    onClick={() => {
+                        if (statusModal.isSuccess) handleLogout();
+                        else setStatusModal(prev => ({ ...prev, show: false }));
+                    }}
+                >
+                    <div className="settings-modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className={`settings-status-icon ${statusModal.isSuccess ? 'success' : 'error'}`}>
+                            {statusModal.isSuccess ? '✓' : '!'}
+                        </div>
+                        <h3 className="settings-modal-title">{statusModal.title}</h3>
+                        <p className="settings-modal-text">{statusModal.message}</p>
+                        <div className="settings-modal-actions">
+                            <button
+                                className="settings-modal-btn confirm-logout"
+                                onClick={() => {
+                                    if (statusModal.isSuccess) {
+                                        handleLogout();
+                                    } else {
+                                        setStatusModal(prev => ({ ...prev, show: false }));
+                                    }
+                                }}
+                            >
+                                OK
                             </button>
                         </div>
                     </div>
