@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { RecaptchaVerifier, signInWithPhoneNumber, signOut } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { ApiConstants } from '../../utils/apiConstants';
@@ -21,7 +21,9 @@ const withTimeout = (promise, ms, timeoutMsg) =>
 const Login = () => {
     const [mobileNumber, setMobileNumber] = useState('');
     const [loading, setLoading] = useState(false);
+    const [pageError, setPageError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Ref guard — prevents two submissions running at the same time
     const submittingRef = useRef(false);
@@ -75,8 +77,13 @@ const Login = () => {
             window.confirmationResult = null;
         };
         resetSession();
+
+        if (location.state?.loginError) {
+            setPageError(location.state.loginError);
+        }
+
         return () => { cleanupRecaptcha(); };
-    }, [cleanupRecaptcha]);
+    }, [cleanupRecaptcha, location.state]);
 
     // ─── reCAPTCHA setup ─────────────────────────────────────────────────────
 
@@ -267,6 +274,23 @@ const Login = () => {
 
                     <h2 className="clapkart-login-auth-title">Login</h2>
                     <p className="clapkart-login-auth-subtitle">Please login to continue to your account.</p>
+
+                    {pageError && (
+                        <div style={{
+                            backgroundColor: '#fee2e2',
+                            border: '1px solid #ef4444',
+                            color: '#b91c1c',
+                            padding: '10px 14px',
+                            borderRadius: '8px',
+                            fontSize: '13px',
+                            fontWeight: '500',
+                            marginBottom: '16px',
+                            textAlign: 'center',
+                            lineHeight: '1.4'
+                        }}>
+                            {pageError}
+                        </div>
+                    )}
 
                     <form onSubmit={handleSubmit}>
                         <div className="clapkart-login-form-group">

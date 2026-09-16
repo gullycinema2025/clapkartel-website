@@ -15,6 +15,7 @@ const OTPVerification = () => {
     const [isResendEnabled, setIsResendEnabled] = useState(false);
     const [timer, setTimer] = useState(30);
     const [phone, setPhone] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
     const inputRefs = useRef([]);
 
@@ -110,6 +111,7 @@ const OTPVerification = () => {
     // Login API Call
     const callLoginAPI = async () => {
         const url = `${ApiConstants.baseUrl}${ApiConstants.login}`;
+        setErrorMessage('');
 
         try {
             const response = await fetch(url, {
@@ -118,13 +120,17 @@ const OTPVerification = () => {
                 body: JSON.stringify({ phoneNumber: phone }),
             });
 
-            if (response.status === 200) {
-                const responseData = await response.json();
-                console.log('Login Response:', responseData);
+            const responseData = await response.json().catch(() => ({}));
+            console.log('Login API Status:', response.status, 'Data:', responseData);
 
-                // Store tokens and user data in localStorage
-                // API returns 'access_token' and 'refresh_token' (with underscores)
-                const accessToken = responseData.access_token || responseData.accessToken || '';
+            const isSuccess = response.status === 200 &&
+                (responseData.access_token || responseData.accessToken || responseData.token) &&
+                responseData.status !== false &&
+                responseData.status !== 0 &&
+                responseData.status !== '0';
+
+            if (isSuccess) {
+                const accessToken = responseData.access_token || responseData.accessToken || responseData.token || '';
                 const refreshToken = responseData.refresh_token || responseData.refreshToken || '';
 
                 localStorage.setItem('access_token', accessToken);
@@ -146,18 +152,41 @@ const OTPVerification = () => {
                 }
 
                 showToast(responseData.message || 'Login successful', 'success');
+                setLoading(false);
 
                 // Navigate to home
                 setTimeout(() => {
                     navigate('/', { replace: true });
                 }, 500);
             } else {
-                const errorData = await response.json();
-                showToast(errorData.message || 'Login failed', 'error');
+                // Account is deactivated or login failed
+                let errorMsg = responseData?.message || responseData?.messages?.error || responseData?.error || responseData?.msg;
+                if (!errorMsg || typeof errorMsg !== 'string') {
+                    errorMsg = 'This account is deactivated or login failed. Please contact support or sign up.';
+                }
+
+                console.warn('Login failed:', errorMsg);
+                setLoading(false);
+                setErrorMessage(errorMsg);
+                showToast(errorMsg, 'error');
+
+                // Redirect to login page after 2.5 seconds so user can read error
+                setTimeout(() => {
+                    navigate('/login', { replace: true, state: { loginError: errorMsg } });
+                }, 2500);
             }
         } catch (e) {
             console.error('Login API Error:', e);
-            showToast('An error occurred during login', 'error');
+            const errorMsg = 'An error occurred during login. Please try again.';
+            setLoading(false);
+            setErrorMessage(errorMsg);
+            showToast(errorMsg, 'error');
+
+            setTimeout(() => {
+                navigate('/login', { replace: true, state: { loginError: errorMsg } });
+            }, 2500);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -171,6 +200,7 @@ const OTPVerification = () => {
         }
 
         setLoading(true);
+        setErrorMessage('');
 
         try {
             // Get the confirmation result from window (stored during login)
@@ -186,8 +216,6 @@ const OTPVerification = () => {
 
             if (user) {
                 console.log('Phone Verified Successfully:', user);
-                showToast('Phone verified successfully!', 'success');
-
                 // Call the login API
                 await callLoginAPI();
             } else {
@@ -197,13 +225,25 @@ const OTPVerification = () => {
             console.error('Verification Error:', error);
             setLoading(false);
 
+            let msg = 'Verification failed. Please try again.';
             if (error.code === 'auth/code-expired' || error.code === 'auth/session-expired') {
-                showToast('OTP has expired. Please click Resend Code.', 'error');
+                msg = 'OTP has expired. Please click Resend Code.';
             } else if (error.code === 'auth/invalid-verification-code') {
-                showToast('Invalid OTP. Please check the code and try again.', 'error');
-            } else {
-                showToast(`Verification failed: ${error.message}`, 'error');
+                msg = 'Invalid OTP. Please check the code and try again.';
+            } else if (error.message) {
+                msg = error.message;
             }
+
+            setErrorMessage(msg);
+            showToast(msg, 'error');
+
+            if (error.message && error.message.includes('Verification session expired')) {
+                setTimeout(() => {
+                    navigate('/login', { replace: true, state: { loginError: msg } });
+                }, 2000);
+            }
+        } finally {
+            // Ensure loading is never stuck
         }
     };
 
@@ -249,6 +289,27 @@ const OTPVerification = () => {
                         <strong>{phone}</strong>
                     </p>
 
+                    {/* Error message banner */}
+                    {errorMessage && (
+                        <div style={{
+                            backgroundColor: '#fee2e2',
+                            border: '1px solid #ef4444',
+                            color: '#b91c1c',
+                            padding: '12px 16px',
+                            borderRadius: '8px',
+                            fontSize: '13px',
+                            fontWeight: '500',
+                            marginBottom: '16px',
+                            textAlign: 'center',
+                            lineHeight: '1.4'
+                        }}>
+                            <div>{errorMessage}</div>
+                            <div style={{ marginTop: '4px', fontSize: '11px', color: '#991b1b' }}>
+                                Redirecting to login page...
+                            </div>
+                        </div>
+                    )}
+
                     {/* OTP Input Fields */}
                     <div className="otp-container">
                         {otp.map((digit, index) => (
@@ -272,8 +333,9 @@ const OTPVerification = () => {
                             {timer > 0 ? `Resend Code in ${timer} seconds` : 'You can resend the code now'}
                         </p>
                         <button
+                            type="button"
                             onClick={resendCode}
-                            disabled={!isResendEnabled}
+                            disabled={!isResendEnabled || loading}
                             className="resend-button"
                             style={{
                                 background: 'none',
@@ -290,6 +352,7 @@ const OTPVerification = () => {
 
                     {/* Login Button */}
                     <button
+                        type="button"
                         onClick={verifyOtpAndSignIn}
                         className="clapkart-login-submit-button"
                         disabled={loading || otp.join('').length !== 6}
@@ -297,12 +360,51 @@ const OTPVerification = () => {
                         {loading ? 'Verifying...' : 'Login'}
                     </button>
 
+                    {/* Back to Login link */}
+                    <div style={{ textAlign: 'center', marginTop: '18px' }}>
+                        <button
+                            type="button"
+                            onClick={() => navigate('/login')}
+                            disabled={loading}
+                            style={{
+                                background: 'none',
+                                border: 'none',
+                                color: '#666',
+                                fontSize: '14px',
+                                cursor: 'pointer',
+                                textDecoration: 'underline',
+                                fontFamily: 'Sen, sans-serif'
+                            }}
+                        >
+                            ← Back to Login
+                        </button>
+                    </div>
+
                     {/* Loading Dialog */}
                     {loading && (
                         <div className="loading-overlay">
                             <div className="loading-dialog">
                                 <div className="loader"></div>
                                 <p style={{ marginTop: '10px', color: '#333' }}>Please wait...</p>
+                                <button
+                                    type="button"
+                                    style={{
+                                        marginTop: '12px',
+                                        background: 'none',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '6px',
+                                        padding: '4px 14px',
+                                        cursor: 'pointer',
+                                        fontSize: '13px',
+                                        color: '#555',
+                                    }}
+                                    onClick={() => {
+                                        setLoading(false);
+                                        navigate('/login');
+                                    }}
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         </div>
                     )}

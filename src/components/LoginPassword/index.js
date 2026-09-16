@@ -97,6 +97,13 @@ const LoginPassword = () => {
           userFriendlyError = 'Invalid password. Please try again.';
           fieldError = { password: userFriendlyError };
         } else if (
+          errorMsg.toLowerCase().includes('deactivat') ||
+          errorMsg.toLowerCase().includes('inactiv') ||
+          errorMsg.toLowerCase().includes('disable')
+        ) {
+          userFriendlyError = errorMsg;
+          fieldError = { phoneNumber: userFriendlyError };
+        } else if (
           errorMsg.toLowerCase().includes('user') ||
           errorMsg.toLowerCase().includes('phone') ||
           errorMsg.toLowerCase().includes('found') ||
@@ -170,9 +177,9 @@ const LoginPassword = () => {
                 disabled={loading}
                 autoComplete="tel"
               />
-              {errors.phoneNumber && (
+              {/* {errors.phoneNumber && (
                 <span className="clapkart-login-field-error">{errors.phoneNumber}</span>
-              )}
+              )} */}
             </div>
 
             {/* Password field */}
