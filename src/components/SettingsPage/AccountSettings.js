@@ -191,7 +191,7 @@ const AccountSettings = () => {
                 <div className="settings-modal-backdrop" onClick={() => setShowDeleteModal(false)}>
                     <div className="settings-modal-content" onClick={(e) => e.stopPropagation()}>
                         <h3 className="settings-modal-title">Delete Account</h3>
-                        <p className="settings-modal-text">This action cannot be undone. Do you want to continue?</p>
+                        <p className="settings-modal-text">Are you sure you want to permanently delete your account?</p>
                         <div className="settings-modal-actions">
                             <button className="settings-modal-btn cancel" onClick={() => setShowDeleteModal(false)} disabled={deleting}>Cancel</button>
                             <button className="settings-modal-btn confirm-delete" onClick={handleDeleteAccount} disabled={deleting}>
